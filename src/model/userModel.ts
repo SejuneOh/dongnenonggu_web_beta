@@ -11,3 +11,4 @@ export interface UserModel {
 }
 
 export type RegistUser = Pick<UserModel, "password" | "name">;
+export type User = Partial<UserModel>;

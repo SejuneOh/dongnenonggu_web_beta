@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
+import { funcGetUser } from "../../api/user. api";
 import CorrectBtn from "../Atoms/CorrectBtn";
 import WrongAlertSpan from "../Atoms/WrongAlertSpan";
 import CustomInput from "../Molecules/CustomInput";
+
+function isEmptyObj(obj: any) {
+  if (obj.constructor === Object && Object.keys(obj).length === 0) {
+    return true;
+  }
+
+  return false;
+}
 
 const CorrectInputComponentStyled = styled.div`
   .alert_wrapper {
@@ -26,7 +35,8 @@ export default function CorrectInputComponent({
   setEmail = () => {},
   compareValue = "",
 }: Props) {
-  const [warn, setWarn] = useState({ msg: "", color: "red" });
+  const initWarn = { msg: "", color: "red" };
+  const [warn, setWarn] = useState(initWarn);
   const [active, setActive] = useState<boolean>(false);
   const [value, setValue] = useState<string>("");
 
@@ -38,21 +48,24 @@ export default function CorrectInputComponent({
     setValue(e.target.value);
   };
 
-  const correctBtnClickHandle = (
+  const onChageValue = useCallback(onChange, [value]);
+
+  const correctBtnClickHandle = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    setWarn(initWarn);
     setActive(true);
     if (isEmail) {
       const reg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+      const ret = await funcGetUser(value);
 
       // email 형식 비교
       if (!reg.test(value)) {
         setWarn({ msg: "이메일 양식으로 입력해주세요", color: "red" });
         return;
       }
-
       // 중복 이메일 test
-      if (false) {
+      if (!isEmptyObj(ret)) {
         setWarn({ msg: "중복 이메일입니다.", color: "red" });
         return;
       }
@@ -76,7 +89,7 @@ export default function CorrectInputComponent({
         name={isEmail ? "email" : "ck_password"}
         type={isEmail ? "text" : "password"}
         placeholder={isEmail ? "이메일" : "비밀번호 확인"}
-        onChangeFunc={onChange}
+        onChangeFunc={onChageValue}
       />
       <div className="alert_wrapper">
         <WrongAlertSpan color={warn.color} active={active} msg={warn.msg} />
