@@ -1,16 +1,42 @@
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { funcRegistUser } from "../../api/serverApi";
+import useInput from "../../hooks/useInput";
+import { RegistUser } from "../../model/userModel";
 import { RegisterPageTemplateStyle } from "../../styles/registerPageTemplateStyle";
 import RegistBtn from "../Atoms/ RegistBtn";
-import CorretEmailBtn from "../Atoms/CorretEmailBtn";
 import Logo from "../Atoms/Logo";
-import WrongAlertSpan from "../Atoms/WrongAlertSpan";
 import CustomInput from "../Molecules/CustomInput";
+import CorrectInputComponent from "../Organisms/CorrectInputComponent";
 
 export default function RegisterPageTemplate() {
+  const initState: RegistUser = {
+    name: "",
+    password: "",
+  };
+  const [{ name, password }, onChange, reset] = useInput(initState);
   const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [checkPassword, setCheckPassword] = useState<string>("");
-  const [nickName, setNickName] = useState<string>("");
+  const [isCheckEmail, setIsCheckEmail] = useState<boolean>(false);
+  const [isCheckPassword, setIsCheckPassword] = useState<boolean>(false);
+  const navigator = useNavigate();
+
+  const onSubmitClickHandle = useCallback(async () => {
+    if (!isCheckEmail || !isCheckPassword || !name || !password) {
+      alert("이메일, 비밀번호 중복 확인 및 작성 부탁드립니다.");
+      return;
+    }
+
+    const ret = await funcRegistUser(email, password, name);
+
+    if (ret) {
+      alert("회원가입 완료했습니다.");
+      navigator("/login");
+    } else {
+      navigator("/");
+    }
+    console.log(ret);
+  }, [email, name, password, isCheckEmail, isCheckPassword]);
+
   return (
     <RegisterPageTemplateStyle>
       <div className="login_logo_wrapper">
@@ -18,30 +44,31 @@ export default function RegisterPageTemplate() {
       </div>
       <div className="login_input_container">
         <span className="login_input_title">회원 가입</span>
-        <CustomInput type="text" placeholder="이메일" onChangeFunc={setEmail} />
-        <div className="register_alert_email_corret">
-          <WrongAlertSpan msg="중복된 이메일 입니다." />
-          <CorretEmailBtn />
-        </div>
+        <CorrectInputComponent
+          isEmail={true}
+          checkState={setIsCheckEmail}
+          setEmail={setEmail}
+        />
         <CustomInput
+          name="password"
           type="password"
           placeholder="비밀번호"
-          onChangeFunc={setPassword}
+          onChangeFunc={onChange}
+        />
+        <CorrectInputComponent
+          isEmail={false}
+          compareValue={password}
+          checkState={setIsCheckPassword}
         />
         <CustomInput
-          type="password"
-          placeholder="비밀번호 확인"
-          onChangeFunc={setCheckPassword}
-        />
-        <WrongAlertSpan msg="작성한 비밀번호와 다릅니다." />
-        <CustomInput
+          name="name"
           type="text"
           placeholder="닉네임"
-          onChangeFunc={setNickName}
+          onChangeFunc={onChange}
         />
       </div>
       <div className="register_submit_wrapper">
-        <RegistBtn />
+        <RegistBtn onClick={onSubmitClickHandle} />
       </div>
     </RegisterPageTemplateStyle>
   );

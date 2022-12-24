@@ -4,7 +4,9 @@ import { encode } from "base-64";
 import { Cookies } from "react-cookie";
 
 const api = axios.create({
-  baseURL: "http://15.164.190.48:8082",
+  // baseURL: "http://15.164.190.48:8082",
+  // headers: { "Content-Type": "application/json" },
+  baseURL: "http://localhost:3000",
   headers: { "Content-Type": "application/json" },
 });
 
@@ -146,5 +148,31 @@ export const funcUploadPost = async (
   } catch (e) {
     console.log("🚀 ~ file: serverApi.ts:137 ~ e", e);
     return false;
+  }
+};
+
+/*
+  @param: email: string, password: string, name: string
+  @description: 회원가입 서비스
+  @refact: 
+  @todo: 
+*/
+export const funcRegistUser = async (
+  email: string,
+  password: string,
+  name: string
+) => {
+  try {
+    const result = await api.post("/v1/user/regist", {
+      email,
+      password,
+      name,
+    });
+
+    if (result.status !== 200) return false;
+
+    return true;
+  } catch (err) {
+    console.log("🚀 ~ file: serverApi.ts:174 ~ err", err);
   }
 };

@@ -7,9 +7,15 @@ const WrongAlertSpanStyle = styled.span`
 `;
 
 type TProps = {
+  color: string;
+  active: boolean;
   msg: string;
 };
 
-export default function WrongAlertSpan({ msg }: TProps) {
-  return <WrongAlertSpanStyle>{msg ? msg : ""}</WrongAlertSpanStyle>;
+export default function WrongAlertSpan({ color, active, msg }: TProps) {
+  return (
+    <WrongAlertSpanStyle style={{ color: color }}>
+      {active ? msg : ""}
+    </WrongAlertSpanStyle>
+  );
 }

@@ -4,9 +4,11 @@ import CustomInputLabel from "../Atoms/LoginPage/CustomInputLabel";
 import CutomInputTag from "../Atoms/LoginPage/CutomInputTag";
 
 type TProps = {
+  name: string;
   type: string;
   placeholder: string;
-  onChangeFunc: React.Dispatch<React.SetStateAction<string>>;
+  // onChangeFunc: React.Dispatch<React.SetStateAction<string>>;
+  onChangeFunc: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const CustomInputStyle = styled.div`
@@ -22,22 +24,20 @@ const CustomInputStyle = styled.div`
 `;
 
 export default function CustomInput({
+  name,
   type,
   placeholder,
   onChangeFunc,
 }: TProps) {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
-  const customInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    onChangeFunc(e.currentTarget.value);
-  };
-
   return (
     <CustomInputStyle className={isFocus ? "focus" : ""}>
       <CutomInputTag
+        name={name}
         type={type}
         IsFocus={setIsFocus}
-        onChange={customInputChange}
+        onChange={onChangeFunc}
       />
       <CustomInputLabel placeholder={placeholder} isFocus={isFocus} />
     </CustomInputStyle>

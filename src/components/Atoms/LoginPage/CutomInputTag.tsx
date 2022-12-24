@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from "react";
+import React, { AllHTMLAttributes, HTMLAttributes } from "react";
 import styled from "styled-components";
 
 const CutomInputTagStyle = styled.input`
@@ -11,12 +11,7 @@ const CutomInputTagStyle = styled.input`
   border: 0;
 `;
 
-// type TProps = {
-//   type: string;
-//   IsFocus: React.Dispatch<React.SetStateAction<boolean>>;
-// };
-
-interface CutomInputTagProps extends HTMLAttributes<HTMLInputElement> {
+interface CutomInputTagProps extends AllHTMLAttributes<HTMLInputElement> {
   type: string;
   IsFocus: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -38,7 +33,7 @@ export default function CutomInputTag({
 
   return (
     <CutomInputTagStyle
-      {...props}
+      {...(props as HTMLAttributes<HTMLInputElement>)}
       type={type ? type : "text"}
       onFocus={focusHandle}
       onBlur={blurHandle}

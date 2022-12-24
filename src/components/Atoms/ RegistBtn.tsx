@@ -1,4 +1,4 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import styled from "styled-components";
 const RegistBtnStyle = styled.button`
   width: 100%;
@@ -10,6 +10,8 @@ const RegistBtnStyle = styled.button`
   margin-top: 10px;
 `;
 
-export default function RegistBtn() {
-  return <RegistBtnStyle>회원가입</RegistBtnStyle>;
+export default function RegistBtn<T extends HTMLAttributes<HTMLButtonElement>>({
+  ...props
+}: T) {
+  return <RegistBtnStyle {...props}>회원가입</RegistBtnStyle>;
 }
