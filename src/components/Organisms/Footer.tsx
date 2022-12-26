@@ -1,22 +1,7 @@
 import { HTMLAttributes } from "react";
-import styled from "styled-components";
+import { FooterStyle } from "../../styles/footerStyle";
 import FooterAppDown from "../Molecules/FooterAppDown";
 import FooterMenu from "../Molecules/FooterMenu";
-
-const FooterStyle = styled.footer`
-  margin-top: 3rem;
-  padding: 3rem 8rem;
-  border-top: 1px solid var(--placeholder-color);
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-
-  .footer_menu_container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-  }
-`;
 
 export type menuType = {
   title: string;

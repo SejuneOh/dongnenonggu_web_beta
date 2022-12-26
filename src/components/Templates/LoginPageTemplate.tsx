@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { funcSignIn } from "../../api/user. api";
+import { useAppDispatch } from "../../hooks/redux_hooks";
+import { funcSetisLogin } from "../../store/loginAction";
 import { LoginPageTemplateStyle } from "../../styles/loginPageTemplateStyle";
 import CustomCheckBox from "../Atoms/LoginPage/CustomCheckBox";
 import ForgotPassWordLink from "../Atoms/LoginPage/ForgotPassWordLink";
 import LoginSubmitBtn from "../Atoms/LoginPage/LoginSubmitBtn";
-import ResgistLinkBtn from "../Atoms/LoginPage/ResgistLinkBtn";
+import RegistLink from "../Atoms/LoginPage/ResgistLink";
 import Logo from "../Atoms/Logo";
 import CustomInput from "../Molecules/CustomInput";
 
@@ -14,6 +16,7 @@ export default function LoginPageTemplate() {
   const [password, setPassword] = useState<string>("");
   const [flag, setFlag] = useState<boolean>(false);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const loginBtnClickHandle = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -22,6 +25,7 @@ export default function LoginPageTemplate() {
     console.log(ret);
 
     if (ret?.success) {
+      dispatch(funcSetisLogin(true));
       navigate("/");
     } else {
       alert("아이디와 비밀번호를 확인해주세요");
@@ -80,7 +84,7 @@ export default function LoginPageTemplate() {
           }
           onClick={loginBtnClickHandle}
         />
-        <ResgistLinkBtn />
+        <RegistLink />
       </div>
     </LoginPageTemplateStyle>
   );

@@ -61,6 +61,7 @@ export default function CorrectInputComponent({
 
       // email 형식 비교
       if (!reg.test(value)) {
+        alert("in");
         setWarn({ msg: "이메일 양식으로 입력해주세요", color: "red" });
         return;
       }

@@ -34,4 +34,26 @@ export const MainBannerStyle = styled.div`
       height: 600px;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .img_container {
+      & > img {
+        height: 400px;
+      }
+    }
+    .description_container {
+      margin: 0.5rem;
+      .main_title {
+        font-size: 2rem;
+      }
+    }
+  }
+  @media screen and (max-width: 425px) {
+    .description_container {
+      margin: 0.5rem;
+      .main_title {
+        font-size: 1.8rem;
+      }
+    }
+  }
 `;

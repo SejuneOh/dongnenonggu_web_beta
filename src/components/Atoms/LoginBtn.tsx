@@ -15,6 +15,8 @@ export default function LoginBtn() {
   const navigate = useNavigate();
 
   return (
-    <LoginBtnStyled onClick={(e) => navigate("/login")}>로그인</LoginBtnStyled>
+    <LoginBtnStyled onClick={(e) => navigate("/account/login")}>
+      로그인
+    </LoginBtnStyled>
   );
 }

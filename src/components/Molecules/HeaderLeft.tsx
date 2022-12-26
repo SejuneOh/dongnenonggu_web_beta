@@ -1,19 +1,8 @@
 import React, { HTMLAttributes } from "react";
 import styled from "styled-components";
+import { HeaderLeftStyle } from "../../styles/HeaderLeftStyle";
 import Logo from "../Atoms/Logo";
 import MenuLink from "../Atoms/MenuLink";
-
-const HeaderLeftStyle = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 1rem;
-  margin-left: 4rem;
-
-  .menu_container {
-    margin-left: 4rem;
-  }
-`;
 
 interface HeaderLeftProps extends HTMLAttributes<HTMLDivElement> {
   mode: number;

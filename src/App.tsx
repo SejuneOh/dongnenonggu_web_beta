@@ -19,6 +19,7 @@ import { funcSetisLogin } from "./store/loginAction";
 import SuccessPage from "./pages/SuccessPage";
 import FailPage from "./pages/FailPage";
 import TestPage from "./pages/TestPage";
+import AppRoutes from "./appRoutes";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -28,56 +29,16 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (location.pathname !== "/") {
-      setIsDark(true);
-    } else {
-      setIsDark(false);
-    }
-
-    if (!location.pathname.includes("/post/")) {
-      setMode(0);
-      return;
-    } else {
-      setMode(1);
-      setIsDark(false);
-    }
-  }, [location]);
-
-  useEffect(() => {
-    console.log("effect");
-
     if (cookie.get("access_token")) {
-      console.log("login!!!");
       dispatch(funcSetisLogin(true));
     }
+
+    return () => dispatch(funcSetisLogin(false));
   }, []);
 
   return (
     <AppDiv>
-      <Header isDark={isDark} mode={mode} />
-      <Routes>
-        {/* main */}
-        <Route index element={<MainPage />} />
-        {/* test */}
-        <Route path="/test" element={<TestPage />} />
-        {/* 인증을 반드시 하지 않아도 되는 접속 가능한 페이지 */}
-        <Route element={<PrivateRoute authentication={false} />}>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Route>
-
-        <Route element={<PrivateRoute authentication={true} />}>
-          <Route path="/post" element={<PostPage />} />
-          <Route path="/post/register" element={<PostRegistPage />} />
-          <Route path="/post/position" element={<PostSelectPositionPage />} />
-          <Route path="/post/article" element={<PostArticlePage />} />
-          <Route path="/guest/:id" element={<GuestPage />} />
-          <Route path="/post/success" element={<SuccessPage />} />
-          <Route path="/post/fail" element={<FailPage />} />
-        </Route>
-        <Route path="*" element={<MainPage />} />
-      </Routes>
-      {mode === 1 ? <StepFooter /> : <Footer />}
+      <AppRoutes />
     </AppDiv>
   );
 }
