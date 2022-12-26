@@ -1,5 +1,7 @@
+import { AxiosError } from "axios";
 import { User } from "./../model/userModel";
 import { api } from "./serverApi";
+import { Cookies } from "react-cookie";
 
 /*
 @param: email: string, password: string, name: string
@@ -7,6 +9,9 @@ import { api } from "./serverApi";
 @refact: 
 @todo: 
 */
+
+const cookie = new Cookies();
+
 export const funcRegistUser = async (
   email: string,
   password: string,
@@ -55,5 +60,24 @@ export const funcGetUser = async (
     return ret.data.user;
   } catch (error) {
     throw new Error(`Server Error in ${funcGetUser.name}`);
+  }
+};
+
+export const funcSignIn = async (email: string, pass: string) => {
+  try {
+    const res = await api.post("/v1/auth/signin", {
+      email: email,
+      password: pass,
+    });
+
+    // access_token 저장
+    cookie.set("access_token", res.headers.access_token);
+    cookie.set("login_user", res.data.uuid);
+    return { success: true, msg: "로그인 성공" };
+  } catch (error) {
+    const errorRes = error as AxiosError;
+
+    if (errorRes.response?.status === 401)
+      return { success: false, msg: "사용자를 찾을 수 없습니다." };
   }
 };

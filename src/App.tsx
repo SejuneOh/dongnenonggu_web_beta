@@ -44,8 +44,10 @@ function App() {
   }, [location]);
 
   useEffect(() => {
-    // if (cookie.get("auth_token")) {
-    if (cookie.get("user_key")) {
+    console.log("effect");
+
+    if (cookie.get("access_token")) {
+      console.log("login!!!");
       dispatch(funcSetisLogin(true));
     }
   }, []);

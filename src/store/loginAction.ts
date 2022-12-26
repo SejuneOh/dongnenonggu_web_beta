@@ -7,11 +7,16 @@ const cookie = new Cookies();
 
 export const funcSetisLogin = (isSuccess: boolean) => {
   return (dispatch: any, getState: any) => {
-    if (isSuccess) {
-      cookie.set("user_key", 1);
-    } else {
-      cookie.remove("user_key");
+    console.log(isSuccess);
+
+    if (!isSuccess) {
+      console.log(isSuccess);
+
+      cookie.remove("access_token");
+      cookie.remove("login_user");
     }
+    console.log(isSuccess);
+
     dispatch(loginActions.doLogin(isSuccess));
   };
 };

@@ -4,8 +4,6 @@ import { encode } from "base-64";
 import { Cookies } from "react-cookie";
 
 export const api = axios.create({
-  // baseURL: "http://15.164.190.48:8082",
-  // headers: { "Content-Type": "application/json" },
   baseURL: "http://localhost:3000",
   headers: { "Content-Type": "application/json" },
 });

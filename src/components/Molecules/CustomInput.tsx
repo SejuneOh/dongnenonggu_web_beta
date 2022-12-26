@@ -4,10 +4,9 @@ import CustomInputLabel from "../Atoms/LoginPage/CustomInputLabel";
 import CutomInputTag from "../Atoms/LoginPage/CutomInputTag";
 
 type TProps = {
-  name: string;
+  name?: string;
   type: string;
   placeholder: string;
-  // onChangeFunc: React.Dispatch<React.SetStateAction<string>>;
   onChangeFunc: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
