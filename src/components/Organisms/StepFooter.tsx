@@ -19,11 +19,15 @@ export default function StepFooter() {
   const dispatch = useAppDispatch();
 
   //upload state item;
-  const address = useAppSelector((state) => state.upload.address);
-  const detailAddress = useAppSelector((state) => state.upload.addressDetail);
-  const zoneNumber = useAppSelector((state) => state.upload.zoneNumber);
-  const title = useAppSelector((state) => state.upload.boardTitle);
-  const contents = useAppSelector((state) => state.upload.boardContent);
+  const address = useAppSelector((state) => state.board.uploadBoard.location);
+  const detailAddress = useAppSelector(
+    (state) => state.board.uploadBoard.locationDetail
+  );
+  const zoneNumber = useAppSelector(
+    (state) => state.board.uploadBoard.zoneNumber
+  );
+  const title = useAppSelector((state) => state.board.uploadBoard.title);
+  const contents = useAppSelector((state) => state.board.uploadBoard.content);
 
   // post page count
   const page = useAppSelector((state) => state.post.page);
@@ -35,12 +39,12 @@ export default function StepFooter() {
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     switch (currentLocate) {
-      case "/post/register":
+      case "/postregist/type":
         break;
-      case "/post/position":
+      case "/postregist/position":
         dispatch(clearUploadPost());
         break;
-      case "/post/article":
+      case "/postregist/description":
         dispatch(delTitle());
         dispatch(delCotents());
         break;
@@ -51,15 +55,15 @@ export default function StepFooter() {
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     switch (currentLocate) {
-      case "/post/register":
+      case "/postregist/type":
         break;
-      case "/post/position":
+      case "/postregist/position":
         if (!address || !zoneNumber || !detailAddress) {
           alert("주소를 다 입력해주세요");
           e.preventDefault();
         }
         break;
-      case "/post/article":
+      case "/postregist/description":
         if (!title || !contents) {
           alert("제목과 게시물 내용을 다 입력해주세요.");
           e.preventDefault();
@@ -73,9 +77,9 @@ export default function StepFooter() {
           );
           if (ret) {
             dispatch(getPostListData(page, count));
-            navigator("/post/success");
+            navigator("/postregist/success");
           } else {
-            navigator("/post/fail");
+            navigator("/postregist/fail");
           }
         }
         break;

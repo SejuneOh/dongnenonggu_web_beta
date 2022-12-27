@@ -116,7 +116,7 @@ export const funcUploadPost = async (
   _boardContent: string,
   _address: string,
   _addressDetail: string,
-  _zoneNumber: string
+  _zoneNumber: number
 ) => {
   const url = "/api/board/write";
 

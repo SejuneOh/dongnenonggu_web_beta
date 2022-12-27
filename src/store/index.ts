@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import boardSlice from "./board.slice";
 import loginSlice from "./loginSlice";
 import postSlice from "./postSlice";
 import stepSlice from "./stepSlice";
@@ -10,6 +11,7 @@ const store = configureStore({
     post: postSlice.reducer,
     step: stepSlice.reducer,
     upload: uploadSlice.reducer,
+    board: boardSlice.reducer,
   },
 });
 

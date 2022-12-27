@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import { funcGetUser } from "../../api/user. api";
+import { funcGetUser } from "../../api/user.api";
 import CorrectBtn from "../Atoms/CorrectBtn";
 import WrongAlertSpan from "../Atoms/WrongAlertSpan";
 import CustomInput from "../Molecules/CustomInput";

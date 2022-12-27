@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../../hooks/redux_hooks";
+import boardSlice from "../../store/board.slice";
 import { funcSetCurrentLocate } from "../../store/stepAction";
-import { setTitle, setContent } from "../../store/uploadPostAction";
 import { PostRegisterTitle } from "./PostRegisterTemplate";
 
 const PostArticleTemplateStyle = styled.div`
@@ -72,7 +72,7 @@ export default function PostArticleTemplate() {
         <input
           type="text"
           onChange={(e) => {
-            dispatch(setTitle(e.target.value));
+            dispatch(boardSlice.actions.setTitle(e.target.value));
           }}
         />
       </div>
@@ -90,7 +90,7 @@ export default function PostArticleTemplate() {
           name=""
           id=""
           onChange={(e) => {
-            dispatch(setContent(e.target.value));
+            dispatch(boardSlice.actions.setContent(e.target.value));
           }}
         ></textarea>
         <span id="warn">

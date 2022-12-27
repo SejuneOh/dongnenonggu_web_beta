@@ -1,6 +1,7 @@
 import React, {
   HTMLAttributes,
   HtmlHTMLAttributes,
+  useCallback,
   useEffect,
   useState,
 } from "react";
@@ -8,9 +9,9 @@ import styled from "styled-components";
 import RegisterOptionDiv from "../Molecules/RegisterOptionDiv";
 import stardium from "../../assets/stadium.svg";
 import backetball from "../../assets/basketballIcon.svg";
-import { useAppDispatch } from "../../hooks/redux_hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
 import { funcSetCurrentLocate } from "../../store/stepAction";
-import { clearUploadPost } from "../../store/uploadPostAction";
+import boardSlice from "../../store/board.slice";
 
 const PostRegisterTemplateStyle = styled.div`
   max-width: 630px;
@@ -26,18 +27,27 @@ const PostRegisterTemplateStyle = styled.div`
 export default function PostRegisterTemplate({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
-  const option = {
-    menu: 0,
-  };
-
-  const [currentMenu, setCurrentMenu] = useState(option);
   const dispatch = useAppDispatch();
+  const isOutDoor = useAppSelector(
+    (state) => state.board.uploadBoard.isOutdoor
+  );
 
   useEffect(() => {
     // 현재 위치를 상태값으로 관리한다.
     dispatch(funcSetCurrentLocate(location.pathname));
-    dispatch(clearUploadPost());
+    dispatch(boardSlice.actions.clearUploadBoard());
   }, []);
+
+  const onChageMenu = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      console.log(e.currentTarget.id);
+
+      const result = e.currentTarget.id === "outdoor" ? true : false;
+
+      dispatch(boardSlice.actions.setIsOutdoor(result));
+    },
+    [isOutDoor]
+  );
 
   return (
     <PostRegisterTemplateStyle {...props}>
@@ -49,14 +59,13 @@ export default function PostRegisterTemplate({
         text="게스트가 사용할 농구장 유형"
       />
       <RegisterOptionDiv
+        id="outdoor"
         mainText="야외 경기장"
         description="야외에서 게스트와 농구를 할 것 입니다."
         img={backetball}
-        onClick={(e) => {
-          setCurrentMenu({ menu: 0 });
-        }}
+        onClick={onChageMenu}
         style={
-          currentMenu.menu === 0
+          isOutDoor
             ? {
                 border: "2px solid var(--black)",
               }
@@ -64,14 +73,13 @@ export default function PostRegisterTemplate({
         }
       />
       <RegisterOptionDiv
+        id="indoor"
         mainText="실내 경기장"
         description="실내에서 게스트와 농구를 할 것 입니다."
         img={stardium}
-        onClick={(e) => {
-          setCurrentMenu({ menu: 1 });
-        }}
+        onClick={onChageMenu}
         style={
-          currentMenu.menu === 1
+          !isOutDoor
             ? {
                 border: "2px solid var(--black)",
               }

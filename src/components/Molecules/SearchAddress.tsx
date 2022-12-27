@@ -2,26 +2,26 @@ import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import { SearchAddressStyle } from "../../styles/searchAddressStyle";
 import DaumPostCode from "react-daum-postcode";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
-import {
-  setAddress,
-  setAddressDetail,
-  setZoneNumber,
-} from "../../store/uploadPostAction";
+import boardSlice from "../../store/board.slice";
 
 interface SearchAddressProps extends HTMLAttributes<HTMLDivElement> {}
 
 export default function SearchAddress({ ...props }: SearchAddressProps) {
   const [postModalActive, setPostModalActive] = useState<boolean>(false);
-  const address = useAppSelector((state) => state.upload.address);
-  const addressDetail = useAppSelector((state) => state.upload.addressDetail);
-  const zoneNubmer = useAppSelector((state) => state.upload.zoneNumber);
+  const address = useAppSelector((state) => state.board.uploadBoard.location);
+  const addressDetail = useAppSelector(
+    (state) => state.board.uploadBoard.locationDetail
+  );
+  const zoneNubmer = useAppSelector(
+    (state) => state.board.uploadBoard.zoneNumber
+  );
 
   const dispatch = useAppDispatch();
 
   const detailAddressChangeHandle = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch(setAddressDetail(e.currentTarget.value));
+    dispatch(boardSlice.actions.setDetailLocation(e.target.value));
   };
 
   const duampostHandle = (data: any) => {
@@ -29,11 +29,11 @@ export default function SearchAddress({ ...props }: SearchAddressProps) {
     setPostModalActive(false);
 
     const _address: string = data.address;
-    const _zoneCode: string = data.zonecode;
+    const _zoneCode: number = data.zonecode;
 
     if (!_address && !_zoneCode) return;
-    dispatch(setAddress(_address));
-    dispatch(setZoneNumber(_zoneCode));
+    dispatch(boardSlice.actions.setLocation(_address));
+    dispatch(boardSlice.actions.setZoneNumber(_zoneCode));
   };
 
   return (
@@ -44,7 +44,7 @@ export default function SearchAddress({ ...props }: SearchAddressProps) {
             <input
               className="address_post_number"
               readOnly={true}
-              value={zoneNubmer}
+              value={zoneNubmer === 0 ? "" : zoneNubmer}
             />
           </div>
           <div className="address_button_wrapper">

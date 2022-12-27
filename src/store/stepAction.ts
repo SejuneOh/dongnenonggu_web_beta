@@ -9,19 +9,18 @@ export const funcSetCurrentLocate = (location: string) => {
 
     // 위치에 따른 다음 스텝 옵션
     switch (location) {
-      case "/post/register":
-        dispatch(stepActions.setNextLocate("/post/position"));
+      case "/postregist/type":
+        dispatch(stepActions.setNextLocate("/postregist/position"));
         dispatch(stepActions.setPrevLocate("/post"));
         dispatch(stepActions.setCurrentStep(1));
         break;
-      case "/post/position":
-        dispatch(stepActions.setNextLocate("/post/article"));
-        dispatch(stepActions.setPrevLocate("/post/register"));
+      case "/postregist/position":
+        dispatch(stepActions.setNextLocate("/postregist/description"));
+        dispatch(stepActions.setPrevLocate("/postregist/type"));
         dispatch(stepActions.setCurrentStep(2));
         break;
-      case "/post/article":
-        dispatch(stepActions.setNextLocate("/post"));
-        dispatch(stepActions.setPrevLocate("/post/position"));
+      case "/postregist/description":
+        dispatch(stepActions.setPrevLocate("/postregist/position"));
         dispatch(stepActions.setCurrentStep(3));
         break;
     }

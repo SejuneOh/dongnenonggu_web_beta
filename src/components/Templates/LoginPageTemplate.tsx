@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { funcSignIn } from "../../api/user. api";
+import { funcSignIn } from "../../api/user.api";
 import { useAppDispatch } from "../../hooks/redux_hooks";
 import { funcSetisLogin } from "../../store/loginAction";
 import { LoginPageTemplateStyle } from "../../styles/loginPageTemplateStyle";

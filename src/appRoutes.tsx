@@ -1,5 +1,4 @@
 import { Navigate, useRoutes } from "react-router-dom";
-import { useAppSelector } from "./hooks/redux_hooks";
 import MainLayout from "./layouts/MainLayout";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
@@ -15,8 +14,6 @@ import SuccessPage from "./pages/SuccessPage";
 import FailPage from "./pages/FailPage";
 
 export default function AppRoutes(): JSX.Element {
-  const isLogin = useAppSelector((state) => state.login.isLogin);
-
   const mainRoutes = {
     path: "/",
     element: <MainLayout />,

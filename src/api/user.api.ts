@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { User } from "./../model/userModel";
+import { User } from "../model/userModel";
 import { api } from "./serverApi";
 import { Cookies } from "react-cookie";
 

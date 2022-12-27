@@ -1,0 +1,54 @@
+import { Board, createBoard } from "./../model/board.model";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface InitBoardSliceInterface {
+  boardList: Array<Board>;
+  uploadBoard: createBoard;
+}
+
+const initState: InitBoardSliceInterface = {
+  boardList: [],
+  uploadBoard: {
+    title: "",
+    content: "",
+    location: "",
+    locationDetail: "",
+    zoneNumber: 0,
+    writerId: "",
+    guestCnt: 0,
+    price: 0,
+    isOutdoor: true,
+  },
+};
+const boardSlice = createSlice({
+  name: "board",
+  initialState: initState,
+  reducers: {
+    clearBoardList(state) {
+      Object.assign(state, initState.boardList);
+    },
+    clearUploadBoard(state) {
+      Object.assign(state, initState.uploadBoard);
+    },
+    setIsOutdoor(state, action: PayloadAction<boolean>) {
+      state.uploadBoard.isOutdoor = action.payload;
+    },
+    setLocation(state, action: PayloadAction<string>) {
+      state.uploadBoard.location = action.payload;
+    },
+    setDetailLocation(state, action: PayloadAction<string>) {
+      state.uploadBoard.locationDetail = action.payload;
+    },
+    setZoneNumber(state, action: PayloadAction<number>) {
+      state.uploadBoard.zoneNumber = action.payload;
+    },
+    setTitle(state, action: PayloadAction<string>) {
+      state.uploadBoard.title = action.payload;
+    },
+    setContent(state, action: PayloadAction<string>) {
+      state.uploadBoard.content = action.payload;
+    },
+  },
+});
+
+export default boardSlice;

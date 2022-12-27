@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { funcRegistUser } from "../../api/user. api";
+import { funcRegistUser } from "../../api/user.api";
 import useInput from "../../hooks/useInput";
 import { RegistUser } from "../../model/userModel";
 import { RegisterPageTemplateStyle } from "../../styles/registerPageTemplateStyle";
@@ -30,6 +30,7 @@ export default function RegisterPageTemplate() {
 
     if (ret) {
       alert("회원가입 완료했습니다.");
+      reset();
       navigator("/login");
     } else {
       navigator("/");
