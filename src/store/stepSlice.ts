@@ -12,7 +12,7 @@ const initState: IStep = {
   nextLocate: "",
   prevLocate: "",
   currentStep: 1,
-  totalStep: 3,
+  totalStep: 4,
 };
 
 const stepSlice = createSlice({

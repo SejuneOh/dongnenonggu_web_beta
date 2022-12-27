@@ -3,7 +3,6 @@ import React, {
   HtmlHTMLAttributes,
   useCallback,
   useEffect,
-  useState,
 } from "react";
 import styled from "styled-components";
 import RegisterOptionDiv from "../Molecules/RegisterOptionDiv";

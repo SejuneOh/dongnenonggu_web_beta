@@ -48,6 +48,32 @@ const boardSlice = createSlice({
     setContent(state, action: PayloadAction<string>) {
       state.uploadBoard.content = action.payload;
     },
+    setPrice(state, action: PayloadAction<number>) {
+      console.log(
+        "🚀 ~ file: board.slice.ts:54 ~ setPrice ~ action.payload",
+        action.payload
+      );
+      state.uploadBoard.price = action.payload;
+    },
+    setGuestCnt(state, action: PayloadAction<number>) {
+      console.log(
+        "🚀 ~ file: board.slice.ts:58 ~ setGuestCnt ~ action.payload",
+        action.payload
+      );
+      state.uploadBoard.guestCnt = action.payload;
+    },
+    setClearPrice(state) {
+      state.uploadBoard.price = 0;
+    },
+    setClearGuestCnt(state) {
+      state.uploadBoard.guestCnt = 0;
+    },
+    setClearTitle(state) {
+      state.uploadBoard.title = "";
+    },
+    setClearContent(state) {
+      state.uploadBoard.content = "";
+    },
   },
 });
 

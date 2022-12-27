@@ -12,6 +12,7 @@ import PostSelectPositionPage from "./pages/PostSelectPositionPage";
 import PostArticlePage from "./pages/PostArticlePage";
 import SuccessPage from "./pages/SuccessPage";
 import FailPage from "./pages/FailPage";
+import PostGuestAndPricePage from "./pages/PostGuestAndPricePage";
 
 export default function AppRoutes(): JSX.Element {
   const mainRoutes = {
@@ -19,14 +20,20 @@ export default function AppRoutes(): JSX.Element {
     element: <MainLayout />,
     children: [
       { index: true, element: <MainPage /> },
+      // { index: true, element: <PostGuestAndPricePage /> },
       { path: "*", element: <Navigate to="/" replace /> },
       {
         path: "post",
         element: <PostPage />,
       },
+
       {
         path: "article/:id",
         element: <GuestPage />,
+      },
+      {
+        path: "test",
+        element: <PostGuestAndPricePage />,
       },
     ],
   };
@@ -54,6 +61,7 @@ export default function AppRoutes(): JSX.Element {
       { path: "*", element: <Navigate to="/post" /> },
       { path: "type", element: <PostRegistPage /> },
       { path: "position", element: <PostSelectPositionPage /> },
+      { path: "guest", element: <PostGuestAndPricePage /> },
       { path: "description", element: <PostArticlePage /> },
       { path: "success", element: <SuccessPage /> },
       { path: "fail", element: <FailPage /> },

@@ -14,14 +14,21 @@ export const funcSetCurrentLocate = (location: string) => {
         dispatch(stepActions.setPrevLocate("/post"));
         dispatch(stepActions.setCurrentStep(1));
         break;
+
       case "/postregist/position":
-        dispatch(stepActions.setNextLocate("/postregist/description"));
+        dispatch(stepActions.setNextLocate("/postregist/guest"));
         dispatch(stepActions.setPrevLocate("/postregist/type"));
         dispatch(stepActions.setCurrentStep(2));
         break;
-      case "/postregist/description":
+      case "/postregist/guest":
+        dispatch(stepActions.setNextLocate("/postregist/description"));
         dispatch(stepActions.setPrevLocate("/postregist/position"));
         dispatch(stepActions.setCurrentStep(3));
+
+        break;
+      case "/postregist/description":
+        dispatch(stepActions.setPrevLocate("/postregist/guest"));
+        dispatch(stepActions.setCurrentStep(4));
         break;
     }
   };
