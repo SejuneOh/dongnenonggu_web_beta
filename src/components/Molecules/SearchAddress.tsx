@@ -29,7 +29,7 @@ export default function SearchAddress({ ...props }: SearchAddressProps) {
     setPostModalActive(false);
 
     const _address: string = data.address;
-    const _zoneCode: number = data.zonecode;
+    const _zoneCode: number = +data.zonecode;
 
     if (!_address && !_zoneCode) return;
     dispatch(boardSlice.actions.setLocation(_address));

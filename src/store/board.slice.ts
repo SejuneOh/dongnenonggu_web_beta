@@ -4,6 +4,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface InitBoardSliceInterface {
   boardList: Array<Board>;
   uploadBoard: createBoard;
+  totalBoard: number;
+  totalPages: number;
 }
 
 const initState: InitBoardSliceInterface = {
@@ -19,6 +21,8 @@ const initState: InitBoardSliceInterface = {
     price: 0,
     isOutdoor: true,
   },
+  totalBoard: 0,
+  totalPages: 0,
 };
 const boardSlice = createSlice({
   name: "board",
@@ -49,17 +53,9 @@ const boardSlice = createSlice({
       state.uploadBoard.content = action.payload;
     },
     setPrice(state, action: PayloadAction<number>) {
-      console.log(
-        "🚀 ~ file: board.slice.ts:54 ~ setPrice ~ action.payload",
-        action.payload
-      );
       state.uploadBoard.price = action.payload;
     },
     setGuestCnt(state, action: PayloadAction<number>) {
-      console.log(
-        "🚀 ~ file: board.slice.ts:58 ~ setGuestCnt ~ action.payload",
-        action.payload
-      );
       state.uploadBoard.guestCnt = action.payload;
     },
     setClearPrice(state) {

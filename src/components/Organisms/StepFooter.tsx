@@ -1,5 +1,7 @@
 import React from "react";
+import { Cookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
+import { funcCreateBoard } from "../../api/board.api";
 import { funcUploadPost } from "../../api/serverApi";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
 import boardSlice from "../../store/board.slice";
@@ -15,15 +17,18 @@ export default function StepFooter() {
   const dispatch = useAppDispatch();
 
   //upload state item;
-  const address = useAppSelector((state) => state.board.uploadBoard.location);
-  const detailAddress = useAppSelector(
+  const location = useAppSelector((state) => state.board.uploadBoard.location);
+  const locationDetail = useAppSelector(
     (state) => state.board.uploadBoard.locationDetail
   );
   const zoneNumber = useAppSelector(
     (state) => state.board.uploadBoard.zoneNumber
   );
   const title = useAppSelector((state) => state.board.uploadBoard.title);
-  const contents = useAppSelector((state) => state.board.uploadBoard.content);
+  const content = useAppSelector((state) => state.board.uploadBoard.content);
+  const isOutdoor = useAppSelector(
+    (state) => state.board.uploadBoard.isOutdoor
+  );
 
   const guestCnt = useAppSelector((state) => state.board.uploadBoard.guestCnt);
   const price = useAppSelector((state) => state.board.uploadBoard.price);
@@ -62,7 +67,7 @@ export default function StepFooter() {
       case "/postregist/type":
         break;
       case "/postregist/position":
-        if (!address || !zoneNumber || !detailAddress) {
+        if (!location || !zoneNumber || !locationDetail) {
           alert("주소를 다 입력해주세요");
           e.preventDefault();
         }
@@ -84,19 +89,24 @@ export default function StepFooter() {
         }
         break;
       case "/postregist/description":
-        if (!title || !contents) {
+        if (!title || !content) {
           alert("제목과 게시물 내용을 다 입력해주세요.");
           e.preventDefault();
         } else {
-          const ret = await funcUploadPost(
+          const userId = new Cookies().get("login_user");
+          const ret = await funcCreateBoard({
             title,
-            contents,
-            address,
-            detailAddress,
-            zoneNumber
-          );
+            content,
+            location,
+            locationDetail,
+            zoneNumber,
+            writerId: userId,
+            guestCnt,
+            price,
+            isOutdoor,
+          });
           if (ret) {
-            dispatch(getPostListData(page, count));
+            dispatch(boardSlice.actions.clearUploadBoard());
             navigator("/postregist/success");
           } else {
             navigator("/postregist/fail");

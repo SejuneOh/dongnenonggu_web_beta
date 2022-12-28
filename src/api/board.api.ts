@@ -1,8 +1,15 @@
+import { createBoard } from "./../model/board.model";
 import { api } from "./serverApi";
 
 // 생성
-const funcCreateBoard = async (): Promise<any> => {
-  const res = await api.post("/");
+export const funcCreateBoard = async (newBoard: createBoard): Promise<any> => {
+  try {
+    const res = await api.post("/v1/board", { ...newBoard });
+
+    return res.data;
+  } catch (err) {
+    console.log("🚀 ~ file: board.api.ts:12 ~ funcCreateBoard ~ err", err);
+  }
 };
 
 //삭제
@@ -24,3 +31,5 @@ const funcSearchAllBaord = async (): Promise<any> => {
 const funcSearchOneBoard = async (): Promise<any> => {
   const res = await api.delete("/");
 };
+
+export default { funcCreateBoard };
