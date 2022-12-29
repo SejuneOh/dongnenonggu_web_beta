@@ -13,8 +13,14 @@ export const funcCreateBoard = async (newBoard: createBoard): Promise<any> => {
 };
 
 //삭제
-const funcDeleteBoard = async (): Promise<any> => {
-  const res = await api.delete("/");
+export const funcDeleteBoardById = async (id: number): Promise<boolean> => {
+  const res = await api.delete(`/v1/board/${id}`);
+
+  if (res.status !== 200) {
+    return false;
+  }
+
+  return true;
 };
 
 //Paging 조회
