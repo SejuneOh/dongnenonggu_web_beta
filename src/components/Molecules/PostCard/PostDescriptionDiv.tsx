@@ -9,6 +9,7 @@ type TProps = {
   createAt: string | undefined;
   title: string | undefined;
   description: string | undefined;
+  isOutdoor: boolean | undefined;
 };
 
 const PostDescriptionDivStyle = styled.div`
@@ -23,10 +24,11 @@ export default function PostDescriptionDiv({
   createAt,
   title,
   description,
+  isOutdoor,
 }: TProps) {
   return (
     <PostDescriptionDivStyle>
-      <TimeLabel createAt={createAt} />
+      <TimeLabel createAt={createAt} isOutDoor={isOutdoor} />
       {/* <ExpireLabel /> */}
       <TitleLabel title={title} />
       <DescriptionLabel description={description} />

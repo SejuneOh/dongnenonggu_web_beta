@@ -38,6 +38,7 @@ const PostCard: React.FC<Props> = ({ board }) => {
         createAt={board.createAt?.toString()}
         title={board.title}
         description={board.content}
+        isOutdoor={board.isOutdoor}
       />
       <UserDescriptionDiv
         nickName={board.writerName}
