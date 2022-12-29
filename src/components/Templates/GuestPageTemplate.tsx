@@ -36,6 +36,8 @@ export default function GuestPageTemplate({ id }: Props) {
           <GuestDescription
             nickName={board.writerName ? board.writerName : "동농"}
             description={board.content}
+            price={board.price}
+            guestCnt={board.guestCnt}
           />
         </>
       ) : (
