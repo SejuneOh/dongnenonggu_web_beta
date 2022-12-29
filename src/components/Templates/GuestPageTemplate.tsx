@@ -3,6 +3,10 @@ import { useAppSelector } from "../../hooks/redux_hooks";
 import GuestMap from "../Molecules/GuestPage/GuestMap";
 import GuestDescription from "../Organisms/GuestDescription";
 
+interface Props {
+  id: string;
+}
+
 const GuestPageTemplateStyle = styled.div`
   padding: 1rem;
 
@@ -12,26 +16,26 @@ const GuestPageTemplateStyle = styled.div`
   }
 `;
 
-export default function GuestPageTemplate() {
-  const currentPost = useAppSelector((state) => state.post.currentPost);
+export default function GuestPageTemplate({ id }: Props) {
+  const board = useAppSelector((state) =>
+    state.board.boardList.find((el) => el.boardNo === parseInt(id))
+  );
 
   return (
     <GuestPageTemplateStyle>
       {/* title */}
-      {currentPost ? (
+      {board ? (
         <>
-          <h1 className="post_detail_title">{currentPost.boardTitle}</h1>
-          {/* <GuestMap location={currentPost.address ? currentPost.address : ""} /> */}
+          <h1 className="post_detail_title">{board.title}</h1>
+          {/* <GuestMap location={board.address ? currentPost.address : ""} /> */}
           <GuestMap
-            address={currentPost.address}
-            addressDetail={currentPost.addressDetail}
-            zoneNumber={currentPost.zoneNumber}
+            address={board.location}
+            addressDetail={board.locationDetail}
+            zoneNumber={board.zoneNumber}
           />
           <GuestDescription
-            nickName={
-              currentPost.userNickName ? currentPost.userNickName : "동농"
-            }
-            description={currentPost.bordContent}
+            nickName={board.writerName ? board.writerName : "동농"}
+            description={board.content}
           />
         </>
       ) : (

@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useAppDispatch } from "../../hooks/redux_hooks";
 import { Board } from "../../model/board.model";
 import PostDescriptionDiv from "../Molecules/PostCard/PostDescriptionDiv";
 import UserDescriptionDiv from "../Molecules/PostCard/UserDescriptionDiv";
@@ -24,12 +23,11 @@ const PostCardStyle = styled.div`
 
 const PostCard: React.FC<Props> = ({ board }) => {
   const navigator = useNavigate();
-  const dispatch = useAppDispatch();
 
   const onClickPostCardHandle = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    navigator(`/guest/${board.boardNo}`);
+    navigator(`/article/${board.boardNo}`);
   };
 
   return (

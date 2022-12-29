@@ -44,7 +44,7 @@ export const funcSetTotalBoard = (limit: number) => {
     dispatch(actions.setBoardList(initBoardList));
   };
 };
-
+// update board list
 export const updateBoarderList = () => {
   return async (dispatch: any, getState: any) => {
     const limit = getState().board.limit;
@@ -54,6 +54,7 @@ export const updateBoarderList = () => {
   };
 };
 
+// get data binding
 export const funcBoardDataBinding = (page: number, count: number) => {
   return async (dispatch: any, getState: any) => {
     const result = await funcSearchBoardPage(page, count);

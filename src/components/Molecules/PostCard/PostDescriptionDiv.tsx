@@ -1,7 +1,5 @@
-import React from "react";
 import styled from "styled-components";
 import DescriptionLabel from "../../Atoms/PostCard/DescriptionLabel";
-import ExpireLabel from "../../Atoms/PostCard/ExpireLabel";
 import TimeLabel from "../../Atoms/PostCard/TimeLabel";
 import TitleLabel from "../../Atoms/PostCard/TitleLabel";
 

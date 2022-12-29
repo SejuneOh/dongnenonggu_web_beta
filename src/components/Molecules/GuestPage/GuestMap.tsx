@@ -16,7 +16,7 @@ const GuestMapStyle = styled.div`
 interface GuestMapProps extends HTMLAttributes<HTMLDivElement> {
   address: string | undefined;
   addressDetail: string | undefined;
-  zoneNumber: string | undefined;
+  zoneNumber: number | undefined;
 }
 
 const GuestMap: React.FC<GuestMapProps> = ({
