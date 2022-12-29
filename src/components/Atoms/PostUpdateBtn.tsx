@@ -1,7 +1,6 @@
-import React from "react";
 import refreshIcon from "../../assets/refresh.svg";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
-import { funcUpdateList } from "../../store/postAction";
+import { updateBoarderList } from "../../store/board.action";
 import { PostUpdateBtnStyle } from "../../styles/PostUpdateBtnStyle";
 
 export default function PostUpdateBtn() {
@@ -10,7 +9,7 @@ export default function PostUpdateBtn() {
   return (
     <PostUpdateBtnStyle
       onClick={(e) => {
-        dispatch(funcUpdateList());
+        dispatch(updateBoarderList());
       }}
     >
       <img src={refreshIcon} alt="refreshIcon" />

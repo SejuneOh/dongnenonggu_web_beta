@@ -7,8 +7,6 @@ const cookie = new Cookies();
 
 export const funcSetisLogin = (isSuccess: boolean) => {
   return (dispatch: any, getState: any) => {
-    console.log(isSuccess);
-
     if (!isSuccess) {
       console.log(isSuccess);
 

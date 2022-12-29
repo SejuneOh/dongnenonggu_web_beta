@@ -7,6 +7,7 @@ export interface BoardModel {
   zoneNumber: number;
   guestCnt: number;
   writerId: string; //  작성자 id
+  writerName: string;
   commentId: number; // 댓글 id
   price: number;
   isOutdoor: boolean;

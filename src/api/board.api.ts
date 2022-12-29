@@ -18,8 +18,21 @@ const funcDeleteBoard = async (): Promise<any> => {
 };
 
 //Paging 조회
-const funcSearchBoardPage = async (): Promise<any> => {
-  const res = await api.delete("/");
+export const funcSearchBoardPage = async (
+  page?: number,
+  count?: number
+): Promise<any> => {
+  try {
+    const res = await api.get("/v1/board/paging", {
+      params: {
+        page,
+        count,
+      },
+    });
+    console.log("🚀 ~ file: board.api.ts:32 ~ res", res);
+
+    return res;
+  } catch (error) {}
 };
 
 // AllBoard 조회

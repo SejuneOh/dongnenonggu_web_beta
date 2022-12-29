@@ -20,6 +20,15 @@ export const PostPageTemplateStyle = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     margin: -5px;
+
+    .post_noBaord {
+      height: calc(100vh * 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
   }
 
   .post_add_item_container {

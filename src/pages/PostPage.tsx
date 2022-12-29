@@ -13,14 +13,10 @@ const PostPageStyle = styled.section`
 
 export default function PostPage() {
   const dispatch = useAppDispatch();
-  const page = useAppSelector((state) => state.post.page);
-  const count = useAppSelector((state) => state.post.count);
 
   useEffect(() => {
     // 초기화.
     dispatch(funcClearPageNum());
-    // 18개만 불러온다.
-    dispatch(getPostListData(page, count));
   }, []);
 
   return (

@@ -4,6 +4,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface InitBoardSliceInterface {
   boardList: Array<Board>;
   uploadBoard: createBoard;
+  limit: number;
+  currentPage: number;
   totalBoard: number;
   totalPages: number;
 }
@@ -21,6 +23,8 @@ const initState: InitBoardSliceInterface = {
     price: 0,
     isOutdoor: true,
   },
+  limit: 12,
+  currentPage: 0,
   totalBoard: 0,
   totalPages: 0,
 };
@@ -29,10 +33,15 @@ const boardSlice = createSlice({
   initialState: initState,
   reducers: {
     clearBoardList(state) {
-      Object.assign(state, initState.boardList);
+      return (state = {
+        ...state,
+        boardList: initState.boardList,
+        currentPage: 0,
+        totalPages: 0,
+      });
     },
     clearUploadBoard(state) {
-      Object.assign(state, initState.uploadBoard);
+      Object.assign(state.uploadBoard, initState.uploadBoard);
     },
     setIsOutdoor(state, action: PayloadAction<boolean>) {
       state.uploadBoard.isOutdoor = action.payload;
@@ -69,6 +78,18 @@ const boardSlice = createSlice({
     },
     setClearContent(state) {
       state.uploadBoard.content = "";
+    },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
+    setTotalPages(state, action: PayloadAction<number>) {
+      state.totalPages = action.payload;
+    },
+    setTotalBoards(state, action: PayloadAction<number>) {
+      state.totalBoard = action.payload;
+    },
+    setBoardList(state, action: PayloadAction<Array<Board>>) {
+      state.boardList = [...state.boardList, ...action.payload];
     },
   },
 });

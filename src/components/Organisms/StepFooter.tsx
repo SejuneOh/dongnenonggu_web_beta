@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { funcCreateBoard } from "../../api/board.api";
 import { funcUploadPost } from "../../api/serverApi";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
+import { updateBoarderList } from "../../store/board.action";
 import boardSlice from "../../store/board.slice";
 import { getPostListData } from "../../store/postAction";
 import { StepFooterStyle } from "../../styles/stepFooterStyle";
@@ -107,6 +108,7 @@ export default function StepFooter() {
           });
           if (ret) {
             dispatch(boardSlice.actions.clearUploadBoard());
+            dispatch(updateBoarderList());
             navigator("/postregist/success");
           } else {
             navigator("/postregist/fail");
