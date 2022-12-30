@@ -5,7 +5,7 @@ export const StepFooterStyle = styled.footer`
   left: 0;
   bottom: 0;
   right: 0;
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   background-color: #fff;
 
   .step_bar_container {

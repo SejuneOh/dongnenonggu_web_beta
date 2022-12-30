@@ -43,16 +43,6 @@ export const SearchAddressStyle = styled.div`
   }
 
   .daum_post_container {
-    .daum_post_wallpaper {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      background-color: var(--light-gray);
-      opacity: 0.5;
-      left: 0;
-      top: 0;
-    }
-
     .daum_post_wrapper {
       position: fixed;
       top: 50%;

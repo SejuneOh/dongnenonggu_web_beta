@@ -69,10 +69,6 @@ export default function SearchAddress({ ...props }: SearchAddressProps) {
       </div>
       {postModalActive ? (
         <div className="daum_post_container">
-          <div
-            className="daum_post_wallpaper"
-            onClick={(e) => setPostModalActive(false)}
-          ></div>
           <div className="daum_post_wrapper">
             <div className="daum_close">
               <button
