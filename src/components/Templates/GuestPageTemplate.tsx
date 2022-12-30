@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Cookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useAppSelector } from "../../hooks/redux_hooks";
 import DefaultButton from "../Atoms/DefaultButton";
@@ -32,9 +33,11 @@ export default function GuestPageTemplate({ id }: Props) {
   const board = useAppSelector((state) =>
     state.board.boardList.find((el) => el.boardNo === parseInt(id))
   );
+  const tmp = useAppSelector((state) => state.board.boardList);
 
   const loginUser = new Cookies().get("login_user");
   const [isActive, setIsActive] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const onDeleteClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -42,6 +45,21 @@ export default function GuestPageTemplate({ id }: Props) {
     e.preventDefault();
     setIsActive(true);
   };
+
+  useEffect(() => {
+    console.log(
+      "🚀 ~ file: GuestPageTemplate.tsx:33 ~ GuestPageTemplate ~ id",
+      id
+    );
+    console.log(
+      "🚀 ~ file: GuestPageTemplate.tsx:36 ~ GuestPageTemplate ~ board",
+      board
+    );
+    console.log(
+      "🚀 ~ file: GuestPageTemplate.tsx:37 ~ GuestPageTemplate ~ tmp",
+      tmp
+    );
+  }, []);
 
   return (
     <GuestPageTemplateStyle>
@@ -63,7 +81,11 @@ export default function GuestPageTemplate({ id }: Props) {
           />
           {board.writerId === loginUser && (
             <div className="post_update_delete_wrapper">
-              <DefaultButton color="blue" text="수정" />
+              <DefaultButton
+                color="blue"
+                text="수정"
+                onClick={(e) => navigate(`/edit/${id}`)}
+              />
               <DefaultButton color="red" text="삭제" onClick={onDeleteClick} />
               {isActive && (
                 <DeleteModal boardId={parseInt(id)} setActive={setIsActive} />

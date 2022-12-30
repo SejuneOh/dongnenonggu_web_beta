@@ -17,11 +17,6 @@ const RegisterOptionDivStyle = styled.div`
   border: 1px solid var(--light-gray);
   max-width: 630px;
   margin-bottom: 12px;
-  animation-name: listAnimation;
-  animation-duration: 600ms;
-  animation-iteration-count: 1;
-  animation-fill-mode: both;
-  animation-delay: 400ms;
 
   &:hover {
     border: 2px solid var(--black);
@@ -37,7 +32,7 @@ const RegisterOptionDivStyle = styled.div`
 
     & > div {
       margin-top: 4px;
-      font-size: 1rem;
+      font-size: 0.8rem;
       font-weight: 400;
       color: var(--light-gray);
     }
@@ -46,7 +41,7 @@ const RegisterOptionDivStyle = styled.div`
   & > img {
     display: block;
     width: 36px;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 `;
 

@@ -1,4 +1,4 @@
-import { createBoard } from "./../model/board.model";
+import { createBoard, UpdateBoard } from "./../model/board.model";
 import { api } from "./serverApi";
 
 // 생성
@@ -35,20 +35,26 @@ export const funcSearchBoardPage = async (
         count,
       },
     });
-    console.log("🚀 ~ file: board.api.ts:32 ~ res", res);
 
     return res;
   } catch (error) {}
 };
 
-// AllBoard 조회
-const funcSearchAllBaord = async (): Promise<any> => {
-  const res = await api.delete("/");
-};
+//update
+export const funcUpdateBoard = async (
+  boardNo: number,
+  updateData: UpdateBoard
+): Promise<boolean> => {
+  try {
+    const res = await api.put(`/v1/board/${boardNo}`, updateData);
 
-//단일 조회
-const funcSearchOneBoard = async (): Promise<any> => {
-  const res = await api.delete("/");
+    if (res.status !== 200) return false;
+
+    return true;
+  } catch (err) {
+    console.log("🚀 ~ file: board.api.ts:53 ~ err", err);
+    return false;
+  }
 };
 
 export default { funcCreateBoard };

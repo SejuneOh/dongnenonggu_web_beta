@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
+import React, { HTMLAttributes, useState } from "react";
 import { SearchAddressStyle } from "../../styles/searchAddressStyle";
 import DaumPostCode from "react-daum-postcode";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
@@ -37,7 +37,7 @@ export default function SearchAddress({ ...props }: SearchAddressProps) {
   };
 
   return (
-    <SearchAddressStyle>
+    <SearchAddressStyle {...props}>
       <div className="address_container">
         <div className="address_input_container">
           <div className="address_input_wrapper">

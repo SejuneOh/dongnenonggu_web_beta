@@ -27,7 +27,15 @@ export default function PostSelectPositionTemplate() {
         text="어디서 농구를 하시나요?"
       />
       {/* 주소를 찾아 표시 할 수 있도록 변경 */}
-      <SearchAddress />
+      <SearchAddress
+        style={{
+          animation: " listAnimation",
+          animationDuration: "600ms",
+          animationIterationCount: "1",
+          animationFillMode: "both",
+          animationDelay: "400ms",
+        }}
+      />
     </PostSelectPositionTemplateStyle>
   );
 }

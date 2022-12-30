@@ -28,8 +28,6 @@ const PostPageTemplate: React.FC = ({
   const [isPeding, cb] = useTransition();
 
   useEffect(() => {
-    console.log("useEffect");
-
     cb(() => {
       dispatch(funcSetTotalBoard(limit));
     });

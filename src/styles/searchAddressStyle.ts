@@ -7,14 +7,6 @@ export const SearchAddressStyle = styled.div`
     border-radius: 5px;
   }
 
-  .address_container {
-    animation-name: listAnimation;
-    animation-duration: 600ms;
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
-    animation-delay: 400ms;
-  }
-
   .address_input_container {
     display: flex;
     justify-content: flex-start;

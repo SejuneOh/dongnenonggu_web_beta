@@ -13,6 +13,7 @@ import PostArticlePage from "./pages/PostArticlePage";
 import SuccessPage from "./pages/SuccessPage";
 import FailPage from "./pages/FailPage";
 import PostGuestAndPricePage from "./pages/PostGuestAndPricePage";
+import EditBoardPage from "./pages/EditBoardPage";
 
 export default function AppRoutes(): JSX.Element {
   const mainRoutes = {
@@ -34,6 +35,10 @@ export default function AppRoutes(): JSX.Element {
       {
         path: "test",
         element: <PostGuestAndPricePage />,
+      },
+      {
+        path: "edit/:id",
+        element: <EditBoardPage />,
       },
     ],
   };

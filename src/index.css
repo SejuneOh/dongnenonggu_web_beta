@@ -12,6 +12,15 @@ body {
   min-width: 740px;
 	margin: 0;
 	padding: 0;
+
+	/* common animation */
+ /* animation-name: listAnimation;
+  animation-duration: 600ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+  animation-delay: 400ms;
+  box-sizing: border-box;
+ */
 }
 h1, h2, h3, h4, h5, h6 {font-size:1em;}
 h1, h2, h3, h4, h5, h6, div, p, dl, dt, dd, ul, ol, li, form, fieldset, blockquote, address, table, thead, tbody, tfoot, tr, td, caption {

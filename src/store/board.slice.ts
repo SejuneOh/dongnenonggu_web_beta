@@ -91,6 +91,23 @@ const boardSlice = createSlice({
     setBoardList(state, action: PayloadAction<Array<Board>>) {
       state.boardList = [...state.boardList, ...action.payload];
     },
+    updateBoardItem(
+      state,
+      action: PayloadAction<{ id: number; property: string; value: any }>
+    ) {
+      const newState: Array<Board> = [];
+
+      Object.assign(newState, state.boardList);
+
+      newState.map((doc) => {
+        if (doc.boardNo === action.payload.id) {
+          doc[action.payload.property] = action.payload.value;
+        }
+        return doc;
+      });
+
+      state.boardList = newState;
+    },
   },
 });
 

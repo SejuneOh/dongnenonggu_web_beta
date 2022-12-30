@@ -1,4 +1,5 @@
 export interface BoardModel {
+  [key: string | number]: string | number | boolean | Date;
   boardNo: number; //게시글 id
   title: string; // 제목
   content: string; // 내용
@@ -25,6 +26,18 @@ export type createBoard = Pick<
   | "locationDetail"
   | "zoneNumber"
   | "writerId"
+  | "guestCnt"
+  | "price"
+  | "isOutdoor"
+>;
+
+export type UpdateBoard = Pick<
+  BoardModel,
+  | "title"
+  | "content"
+  | "location"
+  | "locationDetail"
+  | "zoneNumber"
   | "guestCnt"
   | "price"
   | "isOutdoor"
