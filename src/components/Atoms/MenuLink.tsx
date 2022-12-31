@@ -1,22 +1,30 @@
-import { Link } from "react-router-dom";
+import { HTMLAttributes } from "react";
 import styled from "styled-components";
 
-type TMenuProps = {
-  linkPath: string;
+interface Props extends HTMLAttributes<HTMLLIElement> {
   text: string;
-};
+}
 
-const MenuStyled = styled(Link)`
+const MenuStyled = styled.li`
   color: inherit;
   font-size: 1rem;
   font-weight: 500;
-  margin-left: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  border-bottom: 1px solid var(--light-gray);
+  background-color: inherit;
+  cursor: pointer;
+
+  :last-child {
+    border-bottom: none;
+  }
 
   &:hover {
     opacity: 0.6;
   }
 `;
 
-export default function MenuLink({ linkPath, text }: TMenuProps) {
-  return <MenuStyled to={linkPath}> {text}</MenuStyled>;
+export default function MenuLink({ text, ...props }: Props) {
+  return <MenuStyled {...props}> {text}</MenuStyled>;
 }

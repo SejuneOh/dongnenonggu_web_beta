@@ -1,4 +1,5 @@
 import React, { HTMLAttributes } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { HeaderLeftStyle } from "../../styles/HeaderLeftStyle";
 import Logo from "../Atoms/Logo";
@@ -9,13 +10,19 @@ interface HeaderLeftProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function HeaderLeft({ mode, ...props }: HeaderLeftProps) {
+  const navigator = useNavigate();
   return (
     <HeaderLeftStyle {...props}>
       <Logo />
       <div className="menu_container">
         {mode === 1 ? null : (
           <>
-            <MenuLink linkPath="/post" text="오늘의 농구" />
+            <MenuLink
+              text="오늘의 농구"
+              onClick={(e) => {
+                navigator("/post");
+              }}
+            />
             {/* <MenuLink linkPath="/amdin" text="관리자" /> */}
           </>
         )}

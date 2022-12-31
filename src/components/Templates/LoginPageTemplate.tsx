@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { funcSignIn } from "../../api/user.api";
 import { useAppDispatch } from "../../hooks/redux_hooks";
-import { funcSetisLogin } from "../../store/loginAction";
+import { funcLogin, funcSetisLogin } from "../../store/loginAction";
 import { LoginPageTemplateStyle } from "../../styles/loginPageTemplateStyle";
 import CustomCheckBox from "../Atoms/LoginPage/CustomCheckBox";
 import ForgotPassWordLink from "../Atoms/LoginPage/ForgotPassWordLink";
@@ -21,11 +21,11 @@ export default function LoginPageTemplate() {
   const loginBtnClickHandle = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    // login api 호출
     const ret = await funcSignIn(email, password);
-    console.log(ret);
 
     if (ret?.success) {
-      dispatch(funcSetisLogin(true));
+      dispatch(funcLogin());
       navigate("/");
     } else {
       alert("아이디와 비밀번호를 확인해주세요");
