@@ -2,8 +2,6 @@ import React, { HTMLAttributes, useEffect, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
 import { funcSetTotalBoard } from "../../store/board.action";
-import boardSlice from "../../store/board.slice";
-import { funcFetchPostList, funcIncreasePage } from "../../store/postAction";
 import { PostPageTemplateStyle } from "../../styles/postPageTemplateStyle";
 import PostSearchBar from "../Atoms/PostSearchBar";
 import PostUpdateBtn from "../Atoms/PostUpdateBtn";
@@ -20,10 +18,7 @@ const PostPageTemplate: React.FC = ({
   const currentPage = useAppSelector((state) => state.board.currentPage);
   const dispatch = useAppDispatch();
   const navigator = useNavigate();
-  const addItemBtnClickHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    dispatch(funcIncreasePage());
-    dispatch(funcFetchPostList());
-  };
+  const addItemBtnClickHandle = (e: React.MouseEvent<HTMLButtonElement>) => {};
 
   const [isPeding, cb] = useTransition();
 

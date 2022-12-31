@@ -1,14 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import boardSlice from "./board.slice";
 import loginSlice from "./loginSlice";
-import postSlice from "./postSlice";
 import stepSlice from "./stepSlice";
 import uploadSlice from "./UploadPostSlice";
 
 const store = configureStore({
   reducer: {
     login: loginSlice.reducer,
-    post: postSlice.reducer,
     step: stepSlice.reducer,
     upload: uploadSlice.reducer,
     board: boardSlice.reducer,
