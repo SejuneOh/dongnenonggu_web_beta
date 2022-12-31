@@ -1,4 +1,4 @@
-import { funcSignIn } from "./../api/user.api";
+import { funcSignOut } from "./../api/user.api";
 import loginSlice from "./loginSlice";
 import { Cookies } from "react-cookie";
 
@@ -13,20 +13,20 @@ export const funcLogin = () => {
 
     if (isLogin) return;
 
-    dispatch(loginActions.doLogin(true));
+    dispatch(loginActions.setLogin(true));
   };
 };
 
 // logout
 export const funcLogOut = () => {
-  return (dispatch: any, getState: any) => {
+  return async (dispatch: any, getState: any) => {
     const isLogin = getState().login.isLogin;
+    console.log("🚀 ~ file: loginAction.ts:24 ~ return ~ isLogin", isLogin);
 
     if (!isLogin) return;
 
-    cookie.remove("auth_token");
-    cookie.remove("login_user");
+    await funcSignOut();
 
-    dispatch(loginActions.doLogin(false));
+    dispatch(loginActions.setLogin(false));
   };
 };

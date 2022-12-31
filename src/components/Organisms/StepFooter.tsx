@@ -2,11 +2,9 @@ import React from "react";
 import { Cookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import { funcCreateBoard } from "../../api/board.api";
-import { funcUploadPost } from "../../api/serverApi";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
 import { updateBoarderList } from "../../store/board.action";
 import boardSlice from "../../store/board.slice";
-import { getPostListData } from "../../store/postAction";
 import { StepFooterStyle } from "../../styles/stepFooterStyle";
 
 export default function StepFooter() {
@@ -34,8 +32,6 @@ export default function StepFooter() {
   const guestCnt = useAppSelector((state) => state.board.uploadBoard.guestCnt);
   const price = useAppSelector((state) => state.board.uploadBoard.price);
   // post page count
-  const page = useAppSelector((state) => state.post.page);
-  const count = useAppSelector((state) => state.post.count);
 
   const navigator = useNavigate();
 

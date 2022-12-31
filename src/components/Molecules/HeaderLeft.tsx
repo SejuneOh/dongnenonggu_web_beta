@@ -1,6 +1,5 @@
-import React, { HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { HeaderLeftStyle } from "../../styles/HeaderLeftStyle";
 import Logo from "../Atoms/Logo";
 import MenuLink from "../Atoms/MenuLink";

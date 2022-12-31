@@ -13,7 +13,7 @@ const loginSlice = createSlice({
   name: "loginProperty",
   initialState: loginState,
   reducers: {
-    doLogin(state, action: PayloadAction<boolean>) {
+    setLogin(state, action: PayloadAction<boolean>) {
       state.isLogin = action.payload;
     },
   },

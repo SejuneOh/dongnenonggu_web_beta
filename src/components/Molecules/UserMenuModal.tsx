@@ -36,7 +36,6 @@ export default function UserMenuModal() {
 
   const logoutMenuClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     dispatch(funcLogOut());
-
     navigator("/");
   };
 

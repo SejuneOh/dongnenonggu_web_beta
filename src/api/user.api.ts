@@ -73,6 +73,11 @@ export const funcSignIn = async (email: string, pass: string) => {
     // access_token 저장
     cookie.set("access_token", res.headers.access_token);
     cookie.set("login_user", res.data.uuid);
+
+    api.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${res.headers.access_token}`;
+
     return { success: true, msg: "로그인 성공" };
   } catch (error) {
     const errorRes = error as AxiosError;
@@ -80,4 +85,17 @@ export const funcSignIn = async (email: string, pass: string) => {
     if (errorRes.response?.status === 401)
       return { success: false, msg: "사용자를 찾을 수 없습니다." };
   }
+};
+
+export const funcSignOut = async () => {
+  const res = await api.post("/v1/auth/signout");
+
+  const clearToken = res.headers.access_token;
+
+  api.defaults.headers.common[
+    "Authorization"
+  ] = `Bearer ${res.headers.access_token}`;
+
+  cookie.set("auth_token", clearToken);
+  cookie.set("login_user", "");
 };
