@@ -1,5 +1,6 @@
 import { HTMLAttributes } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../hooks/redux_hooks";
 import { HeaderLeftStyle } from "../../styles/HeaderLeftStyle";
 import Logo from "../Atoms/Logo";
 import MenuLink from "../Atoms/MenuLink";
@@ -10,6 +11,7 @@ interface HeaderLeftProps extends HTMLAttributes<HTMLDivElement> {
 
 export default function HeaderLeft({ mode, ...props }: HeaderLeftProps) {
   const navigator = useNavigate();
+  const isLogin = useAppSelector((state) => state.login.isLogin);
   return (
     <HeaderLeftStyle {...props}>
       <Logo />
@@ -19,7 +21,7 @@ export default function HeaderLeft({ mode, ...props }: HeaderLeftProps) {
             <MenuLink
               text="오늘의 농구"
               onClick={(e) => {
-                navigator("/post");
+                isLogin ? navigator("/post") : alert("로그인 부탁드립니다.");
               }}
             />
             {/* <MenuLink linkPath="/amdin" text="관리자" /> */}

@@ -1,6 +1,7 @@
 import { funcSignOut } from "./../api/user.api";
 import loginSlice from "./loginSlice";
 import { Cookies } from "react-cookie";
+import { api } from "../api/serverApi";
 
 export const loginActions = loginSlice.actions;
 
@@ -10,8 +11,11 @@ const cookie = new Cookies();
 export const funcLogin = () => {
   return async (dispatch: any, getState: any) => {
     const isLogin = getState().login.isLogin;
+    const token = cookie.get("access_token");
 
     if (isLogin) return;
+
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
     dispatch(loginActions.setLogin(true));
   };

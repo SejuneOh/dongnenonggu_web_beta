@@ -10,11 +10,14 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (cookie.get("access_token")) {
-      dispatch(funcLogin());
-    }
+    const token = cookie.get("auth_token");
+    if (!token || token === "") return;
 
-    return () => dispatch(funcLogOut());
+    dispatch(funcLogin());
+
+    return () => {
+      dispatch(funcLogOut());
+    };
   }, []);
 
   return (
