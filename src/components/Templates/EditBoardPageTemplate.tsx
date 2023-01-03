@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { PostRegisterTitle } from "./PostRegisterTemplate";
 import { EditBoardPageTemplateStlye } from "../../styles/editBoardPageStyle";
-import EditType from "../Organisms/ EditType";
+import EditType from "../Organisms/EditType";
 import EditLocation from "../Organisms/EditLocation";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import EditTitle from "../Organisms/EditTitle";

@@ -10,6 +10,8 @@ import GuestDescription from "../Organisms/GuestDescription";
 import PostContent from "../Organisms/PostContent";
 import PostHost from "../Organisms/PostHost";
 import PostMap from "../Organisms/PostMap";
+import PostPriceAndGuest from "../Organisms/PostPriceAndGuest";
+import PostQnA from "../Organisms/PostQnA";
 
 interface Props {
   id: string;
@@ -57,6 +59,8 @@ export default function GuestPageTemplate({ id }: Props) {
           <PostMap title="위치" boardNo={id} />
           <PostHost title="호스트" boardNo={id} />
           <PostContent title="내용" boardNo={id} />
+          <PostPriceAndGuest title="가격 및 게스트 인원" boardNo={id} />
+          <PostQnA title="QnA" boardNo={id} />
 
           {/* <GuestDescription
             nickName={board.writerName ? board.writerName : "동농"}
