@@ -90,12 +90,14 @@ export const funcSignIn = async (email: string, pass: string) => {
 export const funcSignOut = async () => {
   const res = await api.post("/v1/auth/signout");
 
+  console.log(res);
+
   const clearToken = res.headers.access_token;
 
   api.defaults.headers.common[
     "Authorization"
   ] = `Bearer ${res.headers.access_token}`;
 
-  cookie.set("auth_token", clearToken);
+  cookie.set("access_token", clearToken);
   cookie.set("login_user", "");
 };

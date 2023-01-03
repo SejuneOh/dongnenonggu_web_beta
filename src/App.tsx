@@ -11,9 +11,12 @@ function App() {
 
   useEffect(() => {
     const token = cookie.get("access_token");
-    if (!token || token === "" || token === undefined) return;
 
-    dispatch(funcLogin());
+    if (!token || token === "" || token === "undefined") {
+      return;
+    } else {
+      dispatch(funcLogin());
+    }
 
     return () => {
       dispatch(funcLogOut());
