@@ -33,7 +33,6 @@ export default function GuestPageTemplate({ id }: Props) {
   const board = useAppSelector((state) =>
     state.board.boardList.find((el) => el.boardNo === parseInt(id))
   );
-  const tmp = useAppSelector((state) => state.board.boardList);
 
   const loginUser = new Cookies().get("login_user");
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -45,21 +44,6 @@ export default function GuestPageTemplate({ id }: Props) {
     e.preventDefault();
     setIsActive(true);
   };
-
-  useEffect(() => {
-    console.log(
-      "🚀 ~ file: GuestPageTemplate.tsx:33 ~ GuestPageTemplate ~ id",
-      id
-    );
-    console.log(
-      "🚀 ~ file: GuestPageTemplate.tsx:36 ~ GuestPageTemplate ~ board",
-      board
-    );
-    console.log(
-      "🚀 ~ file: GuestPageTemplate.tsx:37 ~ GuestPageTemplate ~ tmp",
-      tmp
-    );
-  }, []);
 
   return (
     <GuestPageTemplateStyle>
