@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Cookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -7,6 +7,9 @@ import DefaultButton from "../Atoms/DefaultButton";
 import DeleteModal from "../Molecules/DeleteModal";
 import GuestMap from "../Molecules/GuestPage/GuestMap";
 import GuestDescription from "../Organisms/GuestDescription";
+import PostContent from "../Organisms/PostContent";
+import PostHost from "../Organisms/PostHost";
+import PostMap from "../Organisms/PostMap";
 
 interface Props {
   id: string;
@@ -51,19 +54,18 @@ export default function GuestPageTemplate({ id }: Props) {
       {board ? (
         <>
           <h1 className="post_detail_title">{board.title}</h1>
-          {/* <GuestMap location={board.address ? currentPost.address : ""} /> */}
-          <GuestMap
-            address={board.location}
-            addressDetail={board.locationDetail}
-            zoneNumber={board.zoneNumber}
-          />
-          <GuestDescription
+          <PostMap title="위치" boardNo={id} />
+          <PostHost title="호스트" boardNo={id} />
+          <PostContent title="내용" boardNo={id} />
+
+          {/* <GuestDescription
             nickName={board.writerName ? board.writerName : "동농"}
             description={board.content}
             price={board.price}
             guestCnt={board.guestCnt}
             writerId={board.writerId!}
-          />
+            boardNo={id}
+          /> */}
           {board.writerId === loginUser && (
             <div className="post_update_delete_wrapper">
               <DefaultButton

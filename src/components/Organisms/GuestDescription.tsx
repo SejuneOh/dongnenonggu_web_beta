@@ -1,5 +1,6 @@
-import React, { HTMLAttributes, useState } from "react";
+import React, { HTMLAttributes, useEffect, useState } from "react";
 import { Cookies } from "react-cookie";
+import { getBoardComment } from "../../api/comment.api";
 import { GuestDescriptionStyle } from "../../styles/guestDescriptionStyle";
 import GuestMapTitle from "../Atoms/GuestPage/GuestMapTitle";
 import TitleUnderLine from "../Atoms/GuestPage/TitleUnderLine";
@@ -11,6 +12,7 @@ interface GuestDescriptionProps extends HTMLAttributes<HTMLDivElement> {
   description: string | undefined;
   guestCnt: number | undefined;
   writerId: string;
+  boardNo: string;
   price: number | undefined;
 }
 
@@ -20,6 +22,7 @@ export default function GuestDescription({
   price,
   guestCnt,
   writerId,
+  boardNo,
   ...props
 }: GuestDescriptionProps) {
   const [isActiveQnAModal, setIsActiveQnAModal] = useState<boolean>(false);
@@ -30,6 +33,10 @@ export default function GuestDescription({
   ) => {
     setIsActiveQnAModal(true);
   };
+
+  useEffect(() => {
+    getBoardComment(boardNo);
+  }, []);
 
   return (
     <GuestDescriptionStyle {...props}>
