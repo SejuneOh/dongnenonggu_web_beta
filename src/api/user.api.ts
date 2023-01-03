@@ -18,7 +18,7 @@ export const funcRegistUser = async (
   name: string
 ) => {
   try {
-    const result = await api.post("/v1/user/regist", {
+    const result = await api.post("/v1/auth/signup", {
       email,
       password,
       name,

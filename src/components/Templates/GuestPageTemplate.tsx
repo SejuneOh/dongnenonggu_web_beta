@@ -62,6 +62,7 @@ export default function GuestPageTemplate({ id }: Props) {
             description={board.content}
             price={board.price}
             guestCnt={board.guestCnt}
+            writerId={board.writerId!}
           />
           {board.writerId === loginUser && (
             <div className="post_update_delete_wrapper">

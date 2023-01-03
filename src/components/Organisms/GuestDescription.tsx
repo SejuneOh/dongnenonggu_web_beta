@@ -1,5 +1,6 @@
 import React, { HTMLAttributes, useState } from "react";
-import styled from "styled-components";
+import { Cookies } from "react-cookie";
+import { GuestDescriptionStyle } from "../../styles/guestDescriptionStyle";
 import GuestMapTitle from "../Atoms/GuestPage/GuestMapTitle";
 import TitleUnderLine from "../Atoms/GuestPage/TitleUnderLine";
 import Comment from "../Molecules/GuestPage/Comment";
@@ -9,41 +10,20 @@ interface GuestDescriptionProps extends HTMLAttributes<HTMLDivElement> {
   nickName: string;
   description: string | undefined;
   guestCnt: number | undefined;
+  writerId: string;
   price: number | undefined;
 }
-
-const GuestDescriptionStyle = styled.div`
-  position: relative;
-  .guest_host_description_container {
-    margin-top: 2rem;
-    font-size: 24px;
-  }
-
-  .guest_qna_container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-  }
-
-  .guest_info {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-`;
 
 export default function GuestDescription({
   nickName,
   description,
   price,
   guestCnt,
+  writerId,
   ...props
 }: GuestDescriptionProps) {
   const [isActiveQnAModal, setIsActiveQnAModal] = useState<boolean>(false);
+  const cookie = new Cookies();
 
   const qnaBtnClickHandle = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -97,20 +77,22 @@ export default function GuestDescription({
           <GuestMapTitle text="Q&A" />
           <TitleUnderLine />
         </div>
-        <button
-          style={{
-            color: "white",
-            border: "0",
-            width: "100px",
-            height: "40px",
-            borderRadius: "10px",
-            backgroundColor: "#328EEF",
-            cursor: "pointer",
-          }}
-          onClick={qnaBtnClickHandle}
-        >
-          질문하기
-        </button>
+        {writerId !== cookie.get("login_user") && (
+          <button
+            style={{
+              color: "white",
+              border: "0",
+              width: "100px",
+              height: "40px",
+              borderRadius: "10px",
+              backgroundColor: "#328EEF",
+              cursor: "pointer",
+            }}
+            onClick={qnaBtnClickHandle}
+          >
+            질문하기
+          </button>
+        )}
       </div>
       <div className="guest_qna_comment_container">
         <Comment />

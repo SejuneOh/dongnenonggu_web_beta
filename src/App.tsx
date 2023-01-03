@@ -10,8 +10,8 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const token = cookie.get("auth_token");
-    if (!token || token === "") return;
+    const token = cookie.get("access_token");
+    if (!token || token === "" || token === undefined) return;
 
     dispatch(funcLogin());
 

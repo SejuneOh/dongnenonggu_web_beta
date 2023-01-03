@@ -1,4 +1,3 @@
-import { bool } from "./../../node_modules/@types/prop-types/index.d";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface LoginFlag {
