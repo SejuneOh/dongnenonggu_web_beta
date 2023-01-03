@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { HTMLAttributes, useState } from "react";
 import styled from "styled-components";
 import CustomInputLabel from "../Atoms/LoginPage/CustomInputLabel";
 import CutomInputTag from "../Atoms/LoginPage/CutomInputTag";
 
-type TProps = {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   name?: string;
   type: string;
   placeholder: string;
   onChangeFunc: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+}
 
 const CustomInputStyle = styled.div`
   position: relative;
@@ -27,11 +27,12 @@ export default function CustomInput({
   type,
   placeholder,
   onChangeFunc,
-}: TProps) {
+  ...props
+}: Props) {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   return (
-    <CustomInputStyle className={isFocus ? "focus" : ""}>
+    <CustomInputStyle {...props} className={isFocus ? "focus" : ""}>
       <CutomInputTag
         name={name}
         type={type}

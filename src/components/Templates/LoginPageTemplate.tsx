@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { funcSignIn } from "../../api/user.api";
 import { useAppDispatch } from "../../hooks/redux_hooks";
-import { funcLogin, funcSetisLogin } from "../../store/loginAction";
+import { funcLogin } from "../../store/loginAction";
 import { LoginPageTemplateStyle } from "../../styles/loginPageTemplateStyle";
 import CustomCheckBox from "../Atoms/LoginPage/CustomCheckBox";
 import ForgotPassWordLink from "../Atoms/LoginPage/ForgotPassWordLink";
@@ -18,18 +18,30 @@ export default function LoginPageTemplate() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const funcTryLogin = async () => {
+    if (flag) {
+      // login api 호출
+      const ret = await funcSignIn(email, password);
+
+      if (ret?.success) {
+        dispatch(funcLogin());
+        navigate("/");
+      } else {
+        alert("아이디와 비밀번호를 확인해주세요");
+      }
+    } else {
+      alert("아이디와 비밀번호를 모두 작성해주세요");
+    }
+  };
+
+  const keyupPressEnter = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") funcTryLogin();
+  };
+
   const loginBtnClickHandle = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    // login api 호출
-    const ret = await funcSignIn(email, password);
-
-    if (ret?.success) {
-      dispatch(funcLogin());
-      navigate("/");
-    } else {
-      alert("아이디와 비밀번호를 확인해주세요");
-    }
+    funcTryLogin();
   };
 
   const onChange = useCallback(
@@ -60,12 +72,14 @@ export default function LoginPageTemplate() {
           type="text"
           placeholder="이메일"
           onChangeFunc={onChange}
+          onKeyUp={keyupPressEnter}
         />
         <CustomInput
           name="loginPassword"
           type="password"
           placeholder="비밀번호"
           onChangeFunc={onChange}
+          onKeyUp={keyupPressEnter}
         />
       </div>
       <div className="login_option_container">
