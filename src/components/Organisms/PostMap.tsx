@@ -4,9 +4,6 @@ import Map from "../Atoms/GuestPage/Map";
 import GuestAddressDetail from "../Molecules/GuestPage/GuestAddressDetail";
 
 const PostMap = ({ board }: ComponentProps) => {
-  useEffect(() => {
-    console.log(board);
-  }, []);
   return (
     <div>
       {board && (

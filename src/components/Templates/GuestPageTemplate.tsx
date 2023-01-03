@@ -5,8 +5,6 @@ import styled from "styled-components";
 import { useAppSelector } from "../../hooks/redux_hooks";
 import DefaultButton from "../Atoms/DefaultButton";
 import DeleteModal from "../Molecules/DeleteModal";
-import GuestMap from "../Molecules/GuestPage/GuestMap";
-import GuestDescription from "../Organisms/GuestDescription";
 import PostContent from "../Organisms/PostContent";
 import PostHost from "../Organisms/PostHost";
 import PostMap from "../Organisms/PostMap";
@@ -61,15 +59,6 @@ export default function GuestPageTemplate({ id }: Props) {
           <PostContent title="내용" boardNo={id} />
           <PostPriceAndGuest title="가격 및 게스트 인원" boardNo={id} />
           <PostQnA title="QnA" boardNo={id} />
-
-          {/* <GuestDescription
-            nickName={board.writerName ? board.writerName : "동농"}
-            description={board.content}
-            price={board.price}
-            guestCnt={board.guestCnt}
-            writerId={board.writerId!}
-            boardNo={id}
-          /> */}
           {board.writerId === loginUser && (
             <div className="post_update_delete_wrapper">
               <DefaultButton
