@@ -1,51 +1,61 @@
-import { Comment } from "../components/Organisms/PostQnA";
+import { GroupComment } from "./../model/comment.model";
 import { api } from "./serverApi";
 
 export const getBoardComment = async (
   boardNo: string
-): Promise<Array<Comment>> => {
-  console.log(
-    "🚀 ~ file: comment.api.ts:4 ~ getBoardComment ~ boardNo",
-    boardNo
-  );
+): Promise<Array<GroupComment>> => {
   try {
     const res = await api.get(`/v1/comment/${boardNo}`);
 
-    console.log("🚀 ~ file: comment.api.ts:14 ~ res", res);
-    if (res.data.length > 0) {
-      const ret: Array<Comment> = res.data.map((item: any) => {
-        console.log(item);
+    if (!res.data) return [];
 
-        const commentItem: Comment = {
-          boardNo: item.boardNo,
-          commentId: item.commentId,
-          cotent: item.cotent,
-          deps: item.deps,
-          order: item.order,
-          group: item.group,
-          writerId: item.writerId,
-          createAt: item.createAt,
-          updateAt: item.updateAt ?? null,
-          deleteAt: item.deleteAt ?? null,
-        };
-
-        return commentItem;
-      });
-      console.log(
-        "🚀 ~ file: comment.api.ts:29 ~ constret:Array<Comment>=res.data.map ~ ret",
-        ret
-      );
-
-      const groupIds = ret.map((item) => item.group);
-      const uniqueGroups = new Set(groupIds);
-      console.log("🚀 ~ file: comment.api.ts:41 ~ uniqueGroups", uniqueGroups);
+    const data: Array<GroupComment> = res.data.map((item: any, idx: number) => {
+      const ret: GroupComment = {
+        groupId: item.group,
+        comments: item.comments.map((comment: any) => {
+          return {
+            boardNo: comment.boardNo,
+            commentId: comment.commentId,
+            deps: comment.deps,
+            order: comment.order,
+            writerId: comment.writerId,
+            writerName: comment.writerName,
+            createAt: comment.createAt,
+            updateAt: comment.updateAt ?? null,
+            deleteAt: comment.deleteAt ?? null,
+          };
+        }),
+      };
 
       return ret;
-    } else {
-      return [];
-    }
+    });
+
+    return data;
   } catch (err) {
     console.log("🚀 ~ file: comment.api.ts:7 ~ getBoardComment ~ err", err);
     return [];
   }
 };
+
+export async function funcCreateComment(
+  boardNo: string,
+  writerId: string,
+  content: string
+): Promise<boolean> {
+  const body = {
+    boardNo: parseInt(boardNo),
+    writerId,
+    content,
+  };
+
+  try {
+    const res = await api.post(`/v1/comment/`, body);
+
+    if (res.status === 201) return true;
+
+    return false;
+  } catch (err) {
+    console.log("🚀 ~ file: comment.api.ts:58 ~ err", err);
+    return false;
+  }
+}

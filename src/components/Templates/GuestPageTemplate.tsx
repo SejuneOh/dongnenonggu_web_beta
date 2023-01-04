@@ -58,7 +58,7 @@ export default function GuestPageTemplate({ id }: Props) {
           <PostHost title="호스트" boardNo={id} />
           <PostContent title="내용" boardNo={id} />
           <PostPriceAndGuest title="가격 및 게스트 인원" boardNo={id} />
-          <PostQnA title="QnA" boardNo={id} />
+          <PostQnA boardNo={id} />
           {board.writerId === loginUser && (
             <div className="post_update_delete_wrapper">
               <DefaultButton

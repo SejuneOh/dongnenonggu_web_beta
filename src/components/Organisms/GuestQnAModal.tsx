@@ -5,7 +5,6 @@ import GuestQnACard from "../Molecules/GuestPage/GuestQnACard";
 const GuestQnAModalStyle = styled.div`
   position: relative;
   .guest_modal_wallpaper {
-    /* content: ""; */
     position: fixed;
     left: 0;
     height: 0;
@@ -20,10 +19,15 @@ const GuestQnAModalStyle = styled.div`
 
 interface GuestQnAModalProps extends HTMLAttributes<HTMLDivElement> {
   isActiveDispatch: React.Dispatch<React.SetStateAction<boolean>>;
+  submitHandle: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    msg: string
+  ) => void;
 }
 
 export default function GuestQnAModal({
   isActiveDispatch,
+  submitHandle,
   ...props
 }: GuestQnAModalProps) {
   return (
@@ -32,7 +36,10 @@ export default function GuestQnAModal({
         className="guest_modal_wallpaper"
         onClick={(e) => isActiveDispatch(false)}
       ></div>
-      <GuestQnACard isActiveDispatch={isActiveDispatch} />
+      <GuestQnACard
+        isActiveDispatch={isActiveDispatch}
+        submitHandle={submitHandle}
+      />
     </GuestQnAModalStyle>
   );
 }
