@@ -4,15 +4,26 @@ import { GuestQnACardStyle } from "../../../styles/guestQnAStyle";
 
 interface GuestQnACardProps extends HTMLAttributes<HTMLDivElement> {
   isActiveDispatch: React.Dispatch<React.SetStateAction<boolean>>;
+  submitHandle: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    msg: string
+  ) => void;
 }
 export default function GuestQnACard({
   isActiveDispatch,
+  submitHandle,
   ...props
 }: GuestQnACardProps) {
   const [charLength, setCharLength] = useState<number>(0);
+  const [msg, setMsg] = useState<string>("");
 
   const textAreaChangeHandle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.target.textLength > 200) {
+      e.preventDefault();
+      return;
+    }
     setCharLength(e.target.textLength);
+    setMsg(e.target.value);
   };
   return (
     <GuestQnACardStyle {...props}>
@@ -44,7 +55,12 @@ export default function GuestQnACard({
         >
           취소
         </button>
-        <button className="qna_modal_btn_submit">등록</button>
+        <button
+          className="qna_modal_btn_submit"
+          onClick={(e) => submitHandle(e, msg)}
+        >
+          등록
+        </button>
       </div>
     </GuestQnACardStyle>
   );
