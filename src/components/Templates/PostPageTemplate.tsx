@@ -1,7 +1,5 @@
-import { isPending } from "@reduxjs/toolkit";
 import React, { HTMLAttributes, useEffect, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
-import { ClipLoader, BeatLoader } from "react-spinners";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
 import { funcSetTotalBoard } from "../../store/board.action";
 import { PostPageTemplateStyle } from "../../styles/postPageTemplateStyle";
