@@ -95,18 +95,10 @@ export const funcSignIn = async (email: string, pass: string) => {
 
 export const funcSignOut = async () => {
   const res = await api.post("/v1/auth/signout");
+  const clearToken = res.headers.access_token ? res.headers.access_token : "";
 
-  if (!res.headers.access_token) return;
+  api.defaults.headers.common["Authorization"] = `Bearer ${clearToken}`;
 
-  const clearToken = res.headers.access_token;
-
-  api.defaults.headers.common[
-    "Authorization"
-  ] = `Bearer ${res.headers.access_token}`;
-
-  // cookie.set("access_token", clearToken);
-  // cookie.set("login_user", "");
-
-  sessionStorage.setItem("access_token", clearToken);
-  sessionStorage.setItem("login_user", "");
+  sessionStorage.removeItem("access_token");
+  sessionStorage.removeItem("login_user");
 };
