@@ -22,7 +22,7 @@ export default function AppRoutes(): JSX.Element {
     children: [
       { index: true, element: <MainPage /> },
       // { index: true, element: <PostGuestAndPricePage /> },
-      { path: "*", element: <Navigate to="/" replace /> },
+      { path: "*", element: <Navigate to="/" /> },
       {
         path: "post",
         element: <PostPage />,

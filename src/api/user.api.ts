@@ -90,8 +90,6 @@ export const funcSignIn = async (email: string, pass: string) => {
 export const funcSignOut = async () => {
   const res = await api.post("/v1/auth/signout");
 
-  console.log(res);
-
   const clearToken = res.headers.access_token;
 
   api.defaults.headers.common[

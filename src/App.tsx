@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { AppDiv } from "./AppStyle";
 import { Cookies } from "react-cookie";
-import { useAppDispatch } from "./hooks/redux_hooks";
+import { useAppDispatch, useAppSelector } from "./hooks/redux_hooks";
 import { funcLogin, funcLogOut } from "./store/loginAction";
 import AppRoutes from "./appRoutes";
 
 function App() {
   const cookie = new Cookies();
   const dispatch = useAppDispatch();
+  const isLogin = useAppSelector((state) => state.login.isLogin);
 
   useEffect(() => {
     const token = cookie.get("access_token");
@@ -21,7 +22,7 @@ function App() {
     return () => {
       dispatch(funcLogOut());
     };
-  }, []);
+  }, [isLogin]);
 
   return (
     <AppDiv>

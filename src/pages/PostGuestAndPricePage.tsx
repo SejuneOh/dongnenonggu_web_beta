@@ -20,12 +20,9 @@ export default function PostGuestAndPricePage() {
   }, []);
 
   const priceOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-
     dispatch(boardSlice.actions.setPrice(parseInt(e.target.value)));
   };
   const guestCntOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     dispatch(boardSlice.actions.setGuestCnt(parseInt(e.target.value)));
   };
   return (

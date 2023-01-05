@@ -35,7 +35,6 @@ export default function RegisterPageTemplate() {
     } else {
       navigator("/");
     }
-    console.log(ret);
   }, [email, name, password, isCheckEmail, isCheckPassword]);
 
   return (

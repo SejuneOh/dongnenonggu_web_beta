@@ -70,9 +70,6 @@ export default function StepFooter() {
         }
         break;
       case "/postregist/guest":
-        console.log(guestCnt);
-        console.log(price);
-
         if (guestCnt === 0 || price === 0) {
           alert("필요 게스트 인원 및 가격을 다 입력해주세요");
           e.preventDefault();

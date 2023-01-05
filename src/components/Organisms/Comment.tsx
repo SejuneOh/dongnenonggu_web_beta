@@ -21,10 +21,6 @@ export default function Comment({ comments }: Props) {
   const totalArrayLength = comments.length;
   const offset = (selectPage - 1) * limit;
 
-  useEffect(() => {
-    console.log(comments);
-  }, []);
-
   return (
     <div>
       {comments.slice(offset, offset + limit).map((item, idx) => {

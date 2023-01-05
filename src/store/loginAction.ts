@@ -25,7 +25,6 @@ export const funcLogin = () => {
 export const funcLogOut = () => {
   return async (dispatch: any, getState: any) => {
     const isLogin = getState().login.isLogin;
-    console.log("🚀 ~ file: loginAction.ts:24 ~ return ~ isLogin", isLogin);
 
     if (!isLogin) return;
 
