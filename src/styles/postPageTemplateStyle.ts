@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const PostPageTemplateStyle = styled.div`
   .post_option_container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;

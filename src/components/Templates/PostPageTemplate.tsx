@@ -1,11 +1,14 @@
+import { isPending } from "@reduxjs/toolkit";
 import React, { HTMLAttributes, useEffect, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader, BeatLoader } from "react-spinners";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
 import { funcSetTotalBoard } from "../../store/board.action";
 import { PostPageTemplateStyle } from "../../styles/postPageTemplateStyle";
 import PostSearchBar from "../Atoms/PostSearchBar";
 import PostUpdateBtn from "../Atoms/PostUpdateBtn";
 import PostUploadBtn from "../Atoms/PostUploadBtn";
+import Loading from "../Molecules/Loading";
 import PostPageTitle from "../Molecules/PostPageTitle";
 import PostCard from "../Organisms/PostCard";
 
@@ -20,10 +23,10 @@ const PostPageTemplate: React.FC = ({
   const navigator = useNavigate();
   const addItemBtnClickHandle = (e: React.MouseEvent<HTMLButtonElement>) => {};
 
-  const [isPeding, cb] = useTransition();
+  const [isPeding, startTransition] = useTransition();
 
   useEffect(() => {
-    cb(() => {
+    startTransition(() => {
       dispatch(funcSetTotalBoard(limit));
     });
   }, [boards]);
