@@ -1,4 +1,4 @@
-import { GroupComment } from "./../model/comment.model";
+import { Comment, GroupComment } from "./../model/comment.model";
 import { api } from "./serverApi";
 
 export const getBoardComment = async (
@@ -10,27 +10,41 @@ export const getBoardComment = async (
     if (!res.data) return [];
 
     const data: Array<GroupComment> = res.data.map((item: any, idx: number) => {
+      const commentlist: Array<Comment> = item.comments.map((comment: any) => {
+        return {
+          boardNo: comment.boardNo,
+          commentId: comment.commentId,
+          deps: comment.deps,
+          order: comment.order,
+          content: comment.content,
+          writerId: comment.writerId,
+          writerName: comment.writerName,
+          createAt: comment.createAt,
+          updateAt: comment.updateAt ?? null,
+          deleteAt: comment.deleteAt ?? null,
+        };
+      });
+
+      const sortComment = commentlist.sort((a: Comment, b: Comment) => {
+        if (a.order > b.order) return 1;
+        if (a.order < b.order) return -1;
+        return 0;
+      });
+
       const ret: GroupComment = {
         groupId: item.group,
-        comments: item.comments.map((comment: any) => {
-          return {
-            boardNo: comment.boardNo,
-            commentId: comment.commentId,
-            deps: comment.deps,
-            order: comment.order,
-            writerId: comment.writerId,
-            writerName: comment.writerName,
-            createAt: comment.createAt,
-            updateAt: comment.updateAt ?? null,
-            deleteAt: comment.deleteAt ?? null,
-          };
-        }),
+        comments: sortComment,
       };
 
       return ret;
     });
 
-    return data;
+    const sortData = data.sort((a: GroupComment, b: GroupComment) => {
+      if (a.groupId > b.groupId) return -1;
+      if (a.groupId < b.groupId) return 1;
+      return 0;
+    });
+    return sortData;
   } catch (err) {
     console.log("🚀 ~ file: comment.api.ts:7 ~ getBoardComment ~ err", err);
     return [];

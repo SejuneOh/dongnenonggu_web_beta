@@ -15,7 +15,6 @@ interface TitleProps {
 }
 
 const MakePostItemStyle = styled.div`
-  border: 1px solid black;
   margin-top: 1rem;
   padding: 1rem;
 `;

@@ -1,11 +1,15 @@
-import { useEffect } from "react";
+import styled from "styled-components";
 import { ComponentProps, makePostItem } from "../../HoC/MakePostItem";
 import Map from "../Atoms/GuestPage/Map";
 import GuestAddressDetail from "../Molecules/GuestPage/GuestAddressDetail";
 
+const PostMapStyle = styled.div`
+  box-shadow: 1px 1px 0.5px 1px var(--light-gray);
+`;
+
 const PostMap = ({ board }: ComponentProps) => {
   return (
-    <div>
+    <PostMapStyle>
       {board && (
         <>
           <GuestAddressDetail
@@ -15,7 +19,7 @@ const PostMap = ({ board }: ComponentProps) => {
           <Map location={board.location!} />
         </>
       )}
-    </div>
+    </PostMapStyle>
   );
 };
 

@@ -6,6 +6,7 @@ import { GroupComment } from "../../model/comment.model";
 import DefaultButton from "../Atoms/DefaultButton";
 import GuestMapTitle from "../Atoms/GuestPage/GuestMapTitle";
 import TitleUnderLine from "../Atoms/GuestPage/TitleUnderLine";
+import Comment from "./Comment";
 import GuestQnAModal from "./GuestQnAModal";
 
 interface Props {
@@ -24,7 +25,7 @@ const PostQnAStyle = styled.div`
 `;
 
 function PostQnA({ boardNo }: Props) {
-  const [commets, setComments] = useState<Array<GroupComment>>([]);
+  const [comments, setComments] = useState<Array<GroupComment>>([]);
   const [isModalActive, setIsModalActive] = useState<boolean>(false);
   const loginUser = new Cookies().get("login_user");
 
@@ -34,8 +35,6 @@ function PostQnA({ boardNo }: Props) {
 
   async function syncComment() {
     const ret = await getBoardComment(boardNo);
-    console.log(ret);
-
     setComments(ret);
   }
 
@@ -67,6 +66,13 @@ function PostQnA({ boardNo }: Props) {
           text="질문하기"
           onClick={(e) => setIsModalActive(true)}
         />
+      </div>
+      <div>
+        {comments.length > 0 ? (
+          <Comment comments={comments} />
+        ) : (
+          <>댓글이 없습니다.</>
+        )}
       </div>
       {isModalActive && (
         <GuestQnAModal

@@ -7,6 +7,15 @@ const DefaultButtonStyle = styled.button`
   width: 100px;
   height: 40px;
   border-radius: 10px;
+
+  .btn_size_small {
+  }
+
+  .btn_size_medium {
+  }
+
+  .btn_size_large {
+  }
 `;
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
