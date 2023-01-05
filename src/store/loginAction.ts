@@ -11,7 +11,8 @@ const cookie = new Cookies();
 export const funcLogin = () => {
   return async (dispatch: any, getState: any) => {
     const isLogin = getState().login.isLogin;
-    const token = cookie.get("access_token");
+    // const token = cookie.get("access_token");
+    const token = sessionStorage.getItem("access_token");
 
     if (isLogin) return;
 

@@ -16,13 +16,12 @@ export default function MainLayout() {
   return (
     <>
       <Header isDark={isDark} mode={0} />
-      {/* 메인페이지는 보여줘야하고, post와 article은 제외해야한다. */}
       {pathname === "/" ? (
         <Outlet />
       ) : isLogin ? (
         <Outlet />
       ) : (
-        <Navigate to="/" replace />
+        <Navigate to="/" />
       )}
       <Footer />
     </>

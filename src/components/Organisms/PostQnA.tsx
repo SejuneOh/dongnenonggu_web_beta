@@ -27,8 +27,8 @@ const PostQnAStyle = styled.div`
 function PostQnA({ boardNo }: Props) {
   const [comments, setComments] = useState<Array<GroupComment>>([]);
   const [isModalActive, setIsModalActive] = useState<boolean>(false);
-  const loginUser = new Cookies().get("login_user");
-
+  // const loginUser = new Cookies().get("login_user");
+  const loginUser = sessionStorage.getItem("login_user");
   useEffect(() => {
     syncComment();
   }, []);
@@ -42,6 +42,7 @@ function PostQnA({ boardNo }: Props) {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     msg: string
   ) {
+    if (!loginUser) return;
     const ret = await funcCreateComment(boardNo, loginUser, msg);
 
     if (ret) {

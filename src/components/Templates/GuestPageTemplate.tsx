@@ -37,7 +37,9 @@ export default function GuestPageTemplate({ id }: Props) {
     state.board.boardList.find((el) => el.boardNo === parseInt(id))
   );
 
-  const loginUser = new Cookies().get("login_user");
+  // const loginUser = new Cookies().get("login_user");
+  const loginUser = sessionStorage.getItem("login_user");
+
   const [isActive, setIsActive] = useState<boolean>(false);
   const navigate = useNavigate();
 

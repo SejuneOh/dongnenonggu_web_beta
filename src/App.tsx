@@ -6,22 +6,19 @@ import { funcLogin, funcLogOut } from "./store/loginAction";
 import AppRoutes from "./appRoutes";
 
 function App() {
-  const cookie = new Cookies();
+  // const cookie = new Cookies();
   const dispatch = useAppDispatch();
   const isLogin = useAppSelector((state) => state.login.isLogin);
 
   useEffect(() => {
-    const token = cookie.get("access_token");
+    // const token = cookie.get("access_token");
+    const token = sessionStorage.getItem("access_token");
 
     if (!token || token === "" || token === "undefined") {
       return;
     } else {
       dispatch(funcLogin());
     }
-
-    return () => {
-      dispatch(funcLogOut());
-    };
   }, [isLogin]);
 
   return (

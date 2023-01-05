@@ -87,7 +87,9 @@ export default function StepFooter() {
           alert("제목과 게시물 내용을 다 입력해주세요.");
           e.preventDefault();
         } else {
-          const userId = new Cookies().get("login_user");
+          // const userId = new Cookies().get("login_user");
+          const userId = sessionStorage.getItem("login_user");
+          if (!userId) return;
           const ret = await funcCreateBoard({
             title,
             content,

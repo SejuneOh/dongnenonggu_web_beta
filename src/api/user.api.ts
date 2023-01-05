@@ -71,8 +71,14 @@ export const funcSignIn = async (email: string, pass: string) => {
     });
 
     // access_token 저장
-    cookie.set("access_token", res.headers.access_token);
-    cookie.set("login_user", res.data.uuid);
+    // cookie.set("access_token", res.headers.access_token);
+    // cookie.set("login_user", res.data.uuid);
+
+    if (res.status !== 200 || !res.headers.access_token)
+      return { success: false, msg: "로그인 실패" };
+
+    sessionStorage.setItem("access_token", res.headers.access_token);
+    sessionStorage.setItem("login_user", res.data.uuid);
 
     api.defaults.headers.common[
       "Authorization"
@@ -90,12 +96,17 @@ export const funcSignIn = async (email: string, pass: string) => {
 export const funcSignOut = async () => {
   const res = await api.post("/v1/auth/signout");
 
+  if (!res.headers.access_token) return;
+
   const clearToken = res.headers.access_token;
 
   api.defaults.headers.common[
     "Authorization"
   ] = `Bearer ${res.headers.access_token}`;
 
-  cookie.set("access_token", clearToken);
-  cookie.set("login_user", "");
+  // cookie.set("access_token", clearToken);
+  // cookie.set("login_user", "");
+
+  sessionStorage.setItem("access_token", clearToken);
+  sessionStorage.setItem("login_user", "");
 };
