@@ -42,7 +42,6 @@ function PostQnA({ boardNo }: Props) {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     msg: string
   ) {
-    alert(msg);
     const ret = await funcCreateComment(boardNo, loginUser, msg);
 
     if (ret) {
