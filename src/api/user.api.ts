@@ -3,13 +3,6 @@ import { User } from "../model/userModel";
 import { api } from "./serverApi";
 import { Cookies } from "react-cookie";
 
-/*
-@param: email: string, password: string, name: string
-@description: 회원가입 서비스
-@refact: 
-@todo: 
-*/
-
 const cookie = new Cookies();
 
 export const funcRegistUser = async (
@@ -32,12 +25,6 @@ export const funcRegistUser = async (
   }
 };
 
-/*
-  @param: email, name, uuid
-  @description: 회원 찾기
-  @refact: 
-  @todo: 
-*/
 export const funcGetUser = async (
   email?: string,
   name?: string,
