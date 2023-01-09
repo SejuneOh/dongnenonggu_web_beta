@@ -1,8 +1,9 @@
 import axios from "axios";
 import { Cookies } from "react-cookie";
+import { baseUrl } from "../config/inedex";
 
 export const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: baseUrl,
   headers: { "Content-Type": "application/json" },
 });
 

@@ -57,10 +57,6 @@ export const funcSignIn = async (email: string, pass: string) => {
       password: pass,
     });
 
-    // access_token 저장
-    // cookie.set("access_token", res.headers.access_token);
-    // cookie.set("login_user", res.data.uuid);
-
     if (res.status !== 200 || !res.headers.access_token)
       return { success: false, msg: "로그인 실패" };
 
