@@ -11,6 +11,8 @@ function App() {
   const isLogin = useAppSelector((state) => state.login.isLogin);
 
   useEffect(() => {
+    console.log(`mode: ${import.meta.env.MODE}`);
+
     // const token = cookie.get("access_token");
     const token = sessionStorage.getItem("access_token");
 
