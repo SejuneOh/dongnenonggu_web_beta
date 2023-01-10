@@ -20,8 +20,8 @@ function App() {
 
   return (
     <AppDiv>
-      {/* <AppRoutes /> */}
-      <BecomeHostLayout />
+      <AppRoutes />
+      {/* <BecomeHostLayout /> */}
     </AppDiv>
   );
 }
