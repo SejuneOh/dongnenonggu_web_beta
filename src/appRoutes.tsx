@@ -17,7 +17,6 @@ import Layout from "./layouts/Layout";
 export default function AppRoutes(): JSX.Element {
   const mainRoutes = {
     path: "/",
-    // element: <MainLayout />,
     element: <Layout />,
     children: [
       { index: true, element: <MainPage /> },
