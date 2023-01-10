@@ -7,8 +7,6 @@ import { useLogin } from "../hooks/useLogin";
 const LayoutStyle = styled.div`
   & > main {
     margin-top: 6.2rem;
-    /* height: 100vh; */
-    border: 1px solid black;
   }
 `;
 

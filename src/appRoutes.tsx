@@ -3,7 +3,6 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import PostPage from "./pages/PostPage";
 import RegisterPage from "./pages/RegisterPage";
-import PostLayout from "./layouts/PostRegistLayout";
 import GuestPage from "./pages/GuestPage";
 import PostRegistPage from "./pages/PostRegistPage";
 import PostSelectPositionPage from "./pages/PostSelectPositionPage";
