@@ -11,10 +11,6 @@ export const AppDiv = styled.div`
     color: var(--font-color);
   }
 
-  & > footer {
-    box-sizing: border-box;
-  }
-
   @media screen and (max-width: 750px) {
   }
 `;
