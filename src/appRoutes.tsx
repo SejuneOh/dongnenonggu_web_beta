@@ -1,11 +1,8 @@
 import { Navigate, useRoutes } from "react-router-dom";
-import MainLayout from "./layouts/MainLayout";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import PostPage from "./pages/PostPage";
 import RegisterPage from "./pages/RegisterPage";
-import AccountLayout from "./layouts/AccountLayout";
-import PostLayout from "./layouts/PostRegistLayout";
 import GuestPage from "./pages/GuestPage";
 import PostRegistPage from "./pages/PostRegistPage";
 import PostSelectPositionPage from "./pages/PostSelectPositionPage";
@@ -14,56 +11,49 @@ import SuccessPage from "./pages/SuccessPage";
 import FailPage from "./pages/FailPage";
 import PostGuestAndPricePage from "./pages/PostGuestAndPricePage";
 import EditBoardPage from "./pages/EditBoardPage";
+import Layout from "./layouts/Layout";
+import NotFoundPage from "./pages/404Page";
+import BecomeHostLayout from "./layouts/BecomeHostLayout";
 
 export default function AppRoutes(): JSX.Element {
   const mainRoutes = {
     path: "/",
-    element: <MainLayout />,
+    element: <Layout />,
     children: [
       { index: true, element: <MainPage /> },
-      // { index: true, element: <PostGuestAndPricePage /> },
       { path: "*", element: <Navigate to="/" /> },
       {
         path: "post",
         element: <PostPage />,
       },
+    ],
+  };
 
-      {
-        path: "article/:id",
-        element: <GuestPage />,
-      },
-      {
-        path: "test",
-        element: <PostGuestAndPricePage />,
-      },
-      {
-        path: "edit/:id",
-        element: <EditBoardPage />,
-      },
+  const postRoutes = {
+    path: "post",
+    element: <Layout />,
+    children: [
+      { path: "*", element: <NotFoundPage /> },
+      { path: "article/:id", element: <GuestPage /> },
+      { path: "edit/:id", element: <EditBoardPage /> },
     ],
   };
 
   const accountRoutes = {
     path: "account",
-    element: <AccountLayout />,
+    element: <Layout />,
     children: [
-      {
-        path: "*",
-        element: <LoginPage />,
-      },
-      {
-        path: "login",
-        element: <LoginPage />,
-      },
-      { path: "register", element: <RegisterPage /> },
+      { path: "*", element: <NotFoundPage /> },
+      { path: "login", element: <LoginPage /> },
+      { path: "regist", element: <RegisterPage /> },
     ],
   };
 
   const postRegistRoutes = {
-    path: "postregist",
-    element: <PostLayout />,
+    path: "become-host",
+    element: <BecomeHostLayout />,
     children: [
-      { path: "*", element: <Navigate to="/post" /> },
+      { path: "*", element: <NotFoundPage /> },
       { path: "type", element: <PostRegistPage /> },
       { path: "position", element: <PostSelectPositionPage /> },
       { path: "guest", element: <PostGuestAndPricePage /> },
@@ -73,7 +63,12 @@ export default function AppRoutes(): JSX.Element {
     ],
   };
 
-  const routing = useRoutes([mainRoutes, accountRoutes, postRegistRoutes]);
+  const routing = useRoutes([
+    mainRoutes,
+    accountRoutes,
+    postRoutes,
+    postRegistRoutes,
+  ]);
 
   return <div>{routing}</div>;
 }

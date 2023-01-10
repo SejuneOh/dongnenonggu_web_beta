@@ -1,21 +1,16 @@
 import { useEffect } from "react";
 import { AppDiv } from "./AppStyle";
-import { Cookies } from "react-cookie";
 import { useAppDispatch, useAppSelector } from "./hooks/redux_hooks";
 import { funcLogin, funcLogOut } from "./store/loginAction";
 import AppRoutes from "./appRoutes";
+import BecomeHostLayout from "./layouts/BecomeHostLayout";
 
 function App() {
-  // const cookie = new Cookies();
   const dispatch = useAppDispatch();
   const isLogin = useAppSelector((state) => state.login.isLogin);
 
   useEffect(() => {
-    console.log(`mode: ${import.meta.env.MODE}`);
-
-    // const token = cookie.get("access_token");
     const token = sessionStorage.getItem("access_token");
-
     if (!token || token === "" || token === "undefined") {
       return;
     } else {
@@ -26,6 +21,7 @@ function App() {
   return (
     <AppDiv>
       <AppRoutes />
+      {/* <BecomeHostLayout /> */}
     </AppDiv>
   );
 }

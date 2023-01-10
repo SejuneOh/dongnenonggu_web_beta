@@ -1,14 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 import GuestPageTemplate from "../components/Templates/GuestPageTemplate";
-
-const GuestPageStyle = styled.section`
-  margin: 6rem 8rem 0 8rem;
-  padding-top: 3rem;
-  width: 1100px;
-  margin: 6rem auto;
-`;
+import { DefaultTemplate } from "../styles/defaultMainTemplate";
 
 export default function GuestPage() {
   // boardKey
@@ -20,8 +13,8 @@ export default function GuestPage() {
   }, []);
 
   return (
-    <GuestPageStyle>
+    <DefaultTemplate>
       <GuestPageTemplate id={id ? id : ""} />
-    </GuestPageStyle>
+    </DefaultTemplate>
   );
 }

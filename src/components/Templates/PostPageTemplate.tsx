@@ -37,7 +37,7 @@ const PostPageTemplate: React.FC = ({
           <PostUpdateBtn />
           <PostSearchBar />
         </div>
-        <PostUploadBtn onClick={(e) => navigator("/postregist/type")} />
+        <PostUploadBtn onClick={(e) => navigator("/become-host/type")} />
       </div>
       <section className="post_section">
         {boards.length ? (
