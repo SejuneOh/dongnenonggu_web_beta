@@ -14,6 +14,7 @@ import PostGuestAndPricePage from "./pages/PostGuestAndPricePage";
 import EditBoardPage from "./pages/EditBoardPage";
 import Layout from "./layouts/Layout";
 import NotFoundPage from "./pages/404Page";
+import BecomeHostLayout from "./layouts/BecomeHostLayout";
 
 export default function AppRoutes(): JSX.Element {
   const mainRoutes = {
@@ -49,37 +50,26 @@ export default function AppRoutes(): JSX.Element {
     ],
   };
 
-  // const accountRoutes = {
-  //   path: "account",
-  //   element: <AccountLayout />,
-  //   children: [
-  //     {
-  //       path: "*",
-  //       element: <LoginPage />,
-  //     },
-  //     {
-  //       path: "login",
-  //       element: <LoginPage />,
-  //     },
-  //     { path: "register", element: <RegisterPage /> },
-  //   ],
-  // };
+  const postRegistRoutes = {
+    path: "become-host",
+    element: <BecomeHostLayout />,
+    children: [
+      { path: "*", element: <NotFoundPage /> },
+      { path: "type", element: <PostRegistPage /> },
+      { path: "position", element: <PostSelectPositionPage /> },
+      { path: "guest", element: <PostGuestAndPricePage /> },
+      { path: "description", element: <PostArticlePage /> },
+      { path: "success", element: <SuccessPage /> },
+      { path: "fail", element: <FailPage /> },
+    ],
+  };
 
-  // const postRegistRoutes = {
-  //   path: "postregist",
-  //   element: <PostLayout />,
-  //   children: [
-  //     { path: "*", element: <Navigate to="/post" /> },
-  //     { path: "type", element: <PostRegistPage /> },
-  //     { path: "position", element: <PostSelectPositionPage /> },
-  //     { path: "guest", element: <PostGuestAndPricePage /> },
-  //     { path: "description", element: <PostArticlePage /> },
-  //     { path: "success", element: <SuccessPage /> },
-  //     { path: "fail", element: <FailPage /> },
-  //   ],
-  // };
-
-  const routing = useRoutes([mainRoutes, accountRoutes, postRoutes]);
+  const routing = useRoutes([
+    mainRoutes,
+    accountRoutes,
+    postRoutes,
+    postRegistRoutes,
+  ]);
 
   return <div>{routing}</div>;
 }
