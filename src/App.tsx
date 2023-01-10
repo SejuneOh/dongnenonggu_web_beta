@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/redux_hooks";
 import { funcLogin, funcLogOut } from "./store/loginAction";
 import AppRoutes from "./appRoutes";
 import Layout from "./layouts/Layout";
+import NotFoundPage from "./pages/404Page";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -22,6 +23,7 @@ function App() {
     <AppDiv>
       {/* <Layout /> */}
       <AppRoutes />
+      {/* {<NotFoundPage />} */}
     </AppDiv>
   );
 }

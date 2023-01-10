@@ -13,6 +13,7 @@ import FailPage from "./pages/FailPage";
 import PostGuestAndPricePage from "./pages/PostGuestAndPricePage";
 import EditBoardPage from "./pages/EditBoardPage";
 import Layout from "./layouts/Layout";
+import NotFoundPage from "./pages/404Page";
 
 export default function AppRoutes(): JSX.Element {
   const mainRoutes = {
@@ -32,6 +33,7 @@ export default function AppRoutes(): JSX.Element {
     path: "post",
     element: <Layout />,
     children: [
+      { path: "*", element: <NotFoundPage /> },
       { path: "article/:id", element: <GuestPage /> },
       { path: "edit/:id", element: <EditBoardPage /> },
     ],
@@ -41,6 +43,7 @@ export default function AppRoutes(): JSX.Element {
     path: "account",
     element: <Layout />,
     children: [
+      { path: "*", element: <NotFoundPage /> },
       { path: "login", element: <LoginPage /> },
       { path: "regist", element: <RegisterPage /> },
     ],
