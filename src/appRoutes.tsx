@@ -1,10 +1,8 @@
 import { Navigate, useRoutes } from "react-router-dom";
-import MainLayout from "./layouts/MainLayout";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import PostPage from "./pages/PostPage";
 import RegisterPage from "./pages/RegisterPage";
-import AccountLayout from "./layouts/AccountLayout";
 import PostLayout from "./layouts/PostRegistLayout";
 import GuestPage from "./pages/GuestPage";
 import PostRegistPage from "./pages/PostRegistPage";
