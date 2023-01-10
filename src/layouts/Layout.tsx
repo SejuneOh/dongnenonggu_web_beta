@@ -30,7 +30,7 @@ export default function Layout() {
           (pathname === "/account/login" || pathname === "/account/regist") ? (
           <Outlet />
         ) : (
-          <Navigate to="/" />
+          <Navigate to={pathname} />
         )}
       </main>
       <Footer />
