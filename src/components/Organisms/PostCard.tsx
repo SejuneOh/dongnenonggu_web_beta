@@ -27,7 +27,7 @@ const PostCard: React.FC<Props> = ({ board }) => {
   const onClickPostCardHandle = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    navigator(`/article/${board.boardNo}`);
+    navigator(`/post/article/${board.boardNo}`);
   };
 
   return (

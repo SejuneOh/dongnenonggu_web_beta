@@ -22,7 +22,7 @@ const MainBanner: React.FC<TProps> = ({
       {isLeft ? (
         <>
           <div className="img_container">
-            <img src={imageUrl} alt="mainBanner" />
+            <img src={imageUrl} alt="mainBanner" loading="lazy" />
           </div>
           <div className="description_container">
             <article className="main_title">{title}</article>
@@ -36,7 +36,7 @@ const MainBanner: React.FC<TProps> = ({
             <article className="main_description">{description}</article>
           </div>
           <div className="img_container">
-            <img src={imageUrl} alt="mainBanner" />
+            <img src={imageUrl} alt="mainBanner" loading="lazy" />
           </div>
         </>
       )}
