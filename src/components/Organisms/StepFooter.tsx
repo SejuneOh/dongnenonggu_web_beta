@@ -1,5 +1,4 @@
 import React from "react";
-import { Cookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import { funcCreateBoard } from "../../api/board.api";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
@@ -39,18 +38,18 @@ export default function StepFooter() {
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     switch (currentLocate) {
-      case "/postregist/type":
+      case "/become-host/type":
         break;
-      case "/postregist/position":
+      case "/become-host/position":
         dispatch(boardSlice.actions.clearUploadBoard());
         break;
 
-      case "/postregist/guest":
+      case "/become-hos/guest":
         dispatch(boardSlice.actions.setClearPrice());
         dispatch(boardSlice.actions.setClearGuestCnt());
         break;
 
-      case "/postregist/description":
+      case "/become-hos/description":
         dispatch(boardSlice.actions.setClearTitle());
         dispatch(boardSlice.actions.setClearContent());
         break;
@@ -61,15 +60,15 @@ export default function StepFooter() {
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     switch (currentLocate) {
-      case "/postregist/type":
+      case "/become-host/type":
         break;
-      case "/postregist/position":
+      case "/become-host/position":
         if (!location || !zoneNumber || !locationDetail) {
           alert("주소를 다 입력해주세요");
           e.preventDefault();
         }
         break;
-      case "/postregist/guest":
+      case "/become-host/guest":
         if (guestCnt === 0 || price === 0) {
           alert("필요 게스트 인원 및 가격을 다 입력해주세요");
           e.preventDefault();
@@ -82,7 +81,7 @@ export default function StepFooter() {
           e.preventDefault();
         }
         break;
-      case "/postregist/description":
+      case "/become-host/description":
         if (!title || !content) {
           alert("제목과 게시물 내용을 다 입력해주세요.");
           e.preventDefault();
@@ -104,9 +103,9 @@ export default function StepFooter() {
           if (ret) {
             dispatch(boardSlice.actions.clearUploadBoard());
             dispatch(updateBoarderList());
-            navigator("/postregist/success");
+            navigator("/become-host/success");
           } else {
-            navigator("/postregist/fail");
+            navigator("/become-host/fail");
           }
         }
         break;
