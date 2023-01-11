@@ -7,6 +7,7 @@ import UserMenu from "../Atoms/UserMenu";
 
 const HeaderRightStyle = styled.div`
   display: flex;
+  flex: 1 0 400px;
   justify-content: flex-end;
   align-items: center;
   padding: 1rem;

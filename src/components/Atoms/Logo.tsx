@@ -9,5 +9,5 @@ const LogoLink = styled(Link)`
 `;
 
 export default function Logo() {
-  return <LogoLink to="/">DONG-NONG</LogoLink>;
+  return <LogoLink to="/">DONGNONG</LogoLink>;
 }

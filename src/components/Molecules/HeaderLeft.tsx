@@ -19,12 +19,17 @@ export default function HeaderLeft({ mode, ...props }: HeaderLeftProps) {
         {mode === 1 ? null : (
           <>
             <MenuLink
+              text="홈"
+              onClick={(e) => {
+                navigator("/");
+              }}
+            />
+            <MenuLink
               text="오늘의 농구"
               onClick={(e) => {
                 isLogin ? navigator("/post") : alert("로그인 부탁드립니다.");
               }}
             />
-            {/* <MenuLink linkPath="/amdin" text="관리자" /> */}
           </>
         )}
       </div>

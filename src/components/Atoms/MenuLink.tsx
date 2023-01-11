@@ -6,13 +6,13 @@ interface Props extends HTMLAttributes<HTMLLIElement> {
 }
 
 const MenuStyled = styled.li`
+  min-width: 120px;
+  text-align: center;
   color: inherit;
   font-size: 1rem;
   font-weight: 500;
-  width: 100%;
   box-sizing: border-box;
   padding: 1rem;
-  border-bottom: 1px solid var(--light-gray);
   background-color: inherit;
   cursor: pointer;
 
