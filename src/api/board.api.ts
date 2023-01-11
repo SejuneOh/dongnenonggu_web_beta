@@ -52,7 +52,6 @@ export const funcUpdateBoard = async (
 
     return true;
   } catch (err) {
-    console.log("🚀 ~ file: board.api.ts:53 ~ err", err);
     return false;
   }
 };

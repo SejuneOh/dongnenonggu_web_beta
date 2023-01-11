@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import MenuIcon from "../../assets/menu.svg";
 import MenuLightIcon from "../../assets/menu_white.svg";
