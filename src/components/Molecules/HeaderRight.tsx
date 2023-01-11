@@ -1,6 +1,7 @@
 import { HTMLAttributes } from "react";
 import styled from "styled-components";
 import { useAppSelector } from "../../hooks/redux_hooks";
+import { useLogin } from "../../hooks/useLogin";
 import LoginBtn from "../Atoms/LoginBtn";
 import UserMenu from "../Atoms/UserMenu";
 
@@ -22,7 +23,8 @@ export default function HeaderRight({
   mode,
   ...props
 }: HeaderRightProps) {
-  const isLogin = useAppSelector((state) => state.login.isLogin);
+  const isLogin = useLogin();
+
   return (
     <HeaderRightStyle {...props}>
       {mode === 1 ? null : (
