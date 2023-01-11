@@ -14,25 +14,25 @@ import EditBoardPage from "./pages/EditBoardPage";
 import Layout from "./layouts/Layout";
 import NotFoundPage from "./pages/404Page";
 import BecomeHostLayout from "./layouts/BecomeHostLayout";
+import MainLayout from "./layouts/MainLayout";
+import PostLayout from "./layouts/PostLayout";
 
 export default function AppRoutes(): JSX.Element {
   const mainRoutes = {
     path: "/",
-    element: <Layout />,
+    // element: <Layout />,
+    element: <MainLayout />,
     children: [
       { index: true, element: <MainPage /> },
       { path: "*", element: <Navigate to="/" /> },
-      {
-        path: "post",
-        element: <PostPage />,
-      },
     ],
   };
 
   const postRoutes = {
     path: "post",
-    element: <Layout />,
+    element: <PostLayout />,
     children: [
+      { index: true, element: <PostPage /> },
       { path: "*", element: <NotFoundPage /> },
       { path: "article/:id", element: <GuestPage /> },
       { path: "edit/:id", element: <EditBoardPage /> },
