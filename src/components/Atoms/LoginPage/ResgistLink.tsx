@@ -17,7 +17,7 @@ export default function RegistLink() {
   return (
     <RegistLinkStyle>
       <span>처음 방문하시나요?? </span>
-      <Link to="/account/register">회원가입 하러가기</Link>
+      <Link to="/account/regist">회원가입 하러가기</Link>
     </RegistLinkStyle>
   );
 }
