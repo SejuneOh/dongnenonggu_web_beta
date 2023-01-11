@@ -14,20 +14,10 @@ const PostPageTemplate: React.FC = ({
   ...props
 }: HTMLAttributes<HTMLDivElement>) => {
   const boards = useAppSelector((state) => state.board.boardList);
-  const limit = useAppSelector((state) => state.board.limit);
   const totalPage = useAppSelector((state) => state.board.totalPages);
   const currentPage = useAppSelector((state) => state.board.currentPage);
-  const dispatch = useAppDispatch();
   const navigator = useNavigate();
   const addItemBtnClickHandle = (e: React.MouseEvent<HTMLButtonElement>) => {};
-
-  const [isPeding, startTransition] = useTransition();
-
-  useEffect(() => {
-    startTransition(() => {
-      dispatch(funcSetTotalBoard(limit));
-    });
-  }, [boards]);
 
   return (
     <PostPageTemplateStyle {...props}>
