@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Cookies } from "react-cookie";
 import styled from "styled-components";
 import { funcCreateComment, getBoardComment } from "../../api/commentApi";
-import { GroupComment } from "../../model/comment.model";
+import { GroupComment } from "../../model/commentModel";
 import DefaultButton from "../Atoms/DefaultButton";
 import GuestMapTitle from "../Atoms/GuestPage/GuestMapTitle";
 import TitleUnderLine from "../Atoms/GuestPage/TitleUnderLine";

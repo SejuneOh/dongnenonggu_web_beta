@@ -1,4 +1,4 @@
-import { createBoard, UpdateBoard } from "../model/board.model";
+import { createBoard, UpdateBoard } from "../model/boardModel";
 import { api } from "./serverApi";
 
 // 생성

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import GuestMapTitle from "../components/Atoms/GuestPage/GuestMapTitle";
 import TitleUnderLine from "../components/Atoms/GuestPage/TitleUnderLine";
 import { useAppSelector } from "../hooks/reduxHooks";
-import { Board } from "../model/board.model";
+import { Board } from "../model/boardModel";
 
 export interface ComponentProps {
 	board: Board;

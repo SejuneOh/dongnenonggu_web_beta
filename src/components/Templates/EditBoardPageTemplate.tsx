@@ -9,7 +9,7 @@ import EditContent from "../Organisms/EditContent";
 import DefaultButton from "../Atoms/DefaultButton";
 import EditGuestCnt from "../Organisms/EditGuestCnt";
 import EditPrice from "../Organisms/EditPrice";
-import { UpdateBoard } from "../../model/board.model";
+import { UpdateBoard } from "../../model/boardModel";
 import { funcUpdateBoard } from "../../api/boardApi";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { updateBoarderList } from "../../store/board.action";

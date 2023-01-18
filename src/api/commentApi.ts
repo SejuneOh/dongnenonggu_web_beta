@@ -1,4 +1,4 @@
-import { Comment, GroupComment } from "../model/comment.model";
+import { Comment, GroupComment } from "../model/commentModel";
 import { api } from "./serverApi";
 
 export const getBoardComment = async (

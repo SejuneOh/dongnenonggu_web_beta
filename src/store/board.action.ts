@@ -1,4 +1,4 @@
-import { Board } from "./../model/board.model";
+import { Board } from "../model/boardModel";
 import { funcSearchBoardPage } from "../api/boardApi";
 import boardSlice from "./board.slice";
 
