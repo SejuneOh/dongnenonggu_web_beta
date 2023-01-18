@@ -18,57 +18,56 @@ import MainLayout from "./layouts/MainLayout";
 import PostLayout from "./layouts/PostLayout";
 
 export default function AppRoutes(): JSX.Element {
-  const mainRoutes = {
-    path: "/",
-    // element: <Layout />,
-    element: <MainLayout />,
-    children: [
-      { index: true, element: <MainPage /> },
-      { path: "*", element: <Navigate to="/" /> },
-    ],
-  };
+	const mainRoutes = {
+		path: "/",
+		element: <MainLayout />,
+		children: [
+			{ index: true, element: <MainPage /> },
+			{ path: "*", element: <Navigate to="/" /> },
+		],
+	};
 
-  const postRoutes = {
-    path: "post",
-    element: <PostLayout />,
-    children: [
-      { index: true, element: <PostPage /> },
-      { path: "*", element: <NotFoundPage /> },
-      { path: "article/:id", element: <GuestPage /> },
-      { path: "edit/:id", element: <EditBoardPage /> },
-    ],
-  };
+	const postRoutes = {
+		path: "post",
+		element: <PostLayout />,
+		children: [
+			{ index: true, element: <PostPage /> },
+			{ path: "*", element: <NotFoundPage /> },
+			{ path: "article/:id", element: <GuestPage /> },
+			{ path: "edit/:id", element: <EditBoardPage /> },
+		],
+	};
 
-  const accountRoutes = {
-    path: "account",
-    element: <Layout />,
-    children: [
-      { path: "*", element: <NotFoundPage /> },
-      { path: "login", element: <LoginPage /> },
-      { path: "regist", element: <RegisterPage /> },
-    ],
-  };
+	const accountRoutes = {
+		path: "account",
+		element: <Layout />,
+		children: [
+			{ path: "*", element: <NotFoundPage /> },
+			{ path: "login", element: <LoginPage /> },
+			{ path: "regist", element: <RegisterPage /> },
+		],
+	};
 
-  const postRegistRoutes = {
-    path: "become-host",
-    element: <BecomeHostLayout />,
-    children: [
-      { path: "*", element: <NotFoundPage /> },
-      { path: "type", element: <PostRegistPage /> },
-      { path: "position", element: <PostSelectPositionPage /> },
-      { path: "guest", element: <PostGuestAndPricePage /> },
-      { path: "description", element: <PostArticlePage /> },
-      { path: "success", element: <SuccessPage /> },
-      { path: "fail", element: <FailPage /> },
-    ],
-  };
+	const postRegistRoutes = {
+		path: "become-host",
+		element: <BecomeHostLayout />,
+		children: [
+			{ path: "*", element: <NotFoundPage /> },
+			{ path: "type", element: <PostRegistPage /> },
+			{ path: "position", element: <PostSelectPositionPage /> },
+			{ path: "guest", element: <PostGuestAndPricePage /> },
+			{ path: "description", element: <PostArticlePage /> },
+			{ path: "success", element: <SuccessPage /> },
+			{ path: "fail", element: <FailPage /> },
+		],
+	};
 
-  const routing = useRoutes([
-    mainRoutes,
-    accountRoutes,
-    postRoutes,
-    postRegistRoutes,
-  ]);
+	const routing = useRoutes([
+		mainRoutes,
+		accountRoutes,
+		postRoutes,
+		postRegistRoutes,
+	]);
 
-  return <div>{routing}</div>;
+	return <div>{routing}</div>;
 }
