@@ -1,12 +1,10 @@
 import React, { HTMLAttributes, useEffect, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { funcSetTotalBoard } from "../../store/boardAction";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import { PostPageTemplateStyle } from "../../styles/postPageTemplateStyle";
 import PostSearchBar from "../Atoms/PostSearchBar";
 import PostUpdateBtn from "../Atoms/PostUpdateBtn";
 import PostUploadBtn from "../Atoms/PostUploadBtn";
-import Loading from "../Molecules/Loading";
 import PostPageTitle from "../Molecules/PostPageTitle";
 import PostCard from "../Organisms/PostCard";
 
