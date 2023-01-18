@@ -4,7 +4,7 @@ import { funcRegistUser } from "../../api/userApi";
 import useInput from "../../hooks/useInput";
 import { RegistUser } from "../../model/userModel";
 import { RegisterPageTemplateStyle } from "../../styles/registerPageTemplateStyle";
-import RegistBtn from "../Atoms/ RegistBtn";
+import RegistBtn from "../Atoms/RegistBtn";
 import Logo from "../Atoms/Logo";
 import CustomInput from "../Molecules/CustomInput";
 import CorrectInputComponent from "../Organisms/CorrectInputComponent";
