@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { funcSignIn } from "../../api/userApi";
-import { useAppDispatch } from "../../hooks/redux_hooks";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 import { funcLogin } from "../../store/loginAction";
 import { LoginPageTemplateStyle } from "../../styles/loginPageTemplateStyle";
 import CustomCheckBox from "../Atoms/LoginPage/CustomCheckBox";

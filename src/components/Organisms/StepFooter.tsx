@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { funcCreateBoard } from "../../api/boardApi";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux_hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { updateBoarderList } from "../../store/board.action";
 import boardSlice from "../../store/board.slice";
 import { StepFooterStyle } from "../../styles/stepFooterStyle";

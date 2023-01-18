@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { funcDeleteBoardById } from "../../api/boardApi";
-import { useAppDispatch } from "../../hooks/redux_hooks";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 import { updateBoarderList } from "../../store/board.action";
 import { DeleteModalStyle } from "../../styles/deleteModalStyle";
 import DefaultButton from "../Atoms/DefaultButton";
