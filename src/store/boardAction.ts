@@ -1,6 +1,6 @@
 import { Board } from "../model/boardModel";
 import { funcSearchBoardPage } from "../api/boardApi";
-import boardSlice from "./board.slice";
+import boardSlice from "./boardSlice";
 
 const actions = boardSlice.actions;
 

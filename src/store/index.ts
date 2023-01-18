@@ -1,16 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import boardSlice from "./board.slice";
+import boardSlice from "./boardSlice";
 import loginSlice from "./loginSlice";
 import stepSlice from "./stepSlice";
-import uploadSlice from "./UploadPostSlice";
+import uploadSlice from "./uploadPostSlice";
 
 const store = configureStore({
-  reducer: {
-    login: loginSlice.reducer,
-    step: stepSlice.reducer,
-    upload: uploadSlice.reducer,
-    board: boardSlice.reducer,
-  },
+	reducer: {
+		login: loginSlice.reducer,
+		step: stepSlice.reducer,
+		upload: uploadSlice.reducer,
+		board: boardSlice.reducer,
+	},
 });
 
 export type RootState = ReturnType<typeof store.getState>;

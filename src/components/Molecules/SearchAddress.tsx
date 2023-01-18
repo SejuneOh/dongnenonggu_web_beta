@@ -2,7 +2,7 @@ import React, { HTMLAttributes, useState } from "react";
 import { SearchAddressStyle } from "../../styles/searchAddressStyle";
 import DaumPostCode from "react-daum-postcode";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import boardSlice from "../../store/board.slice";
+import boardSlice from "../../store/boardSlice";
 
 interface SearchAddressProps extends HTMLAttributes<HTMLDivElement> {}
 

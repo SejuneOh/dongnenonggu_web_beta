@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import boardSlice from "../../store/board.slice";
+import boardSlice from "../../store/boardSlice";
 import { funcSetCurrentLocate } from "../../store/stepAction";
 import { PostRegisterTitle } from "./PostRegisterTemplate";
 

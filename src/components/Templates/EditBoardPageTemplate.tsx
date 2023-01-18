@@ -12,7 +12,7 @@ import EditPrice from "../Organisms/EditPrice";
 import { UpdateBoard } from "../../model/boardModel";
 import { funcUpdateBoard } from "../../api/boardApi";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { updateBoarderList } from "../../store/board.action";
+import { updateBoarderList } from "../../store/boardAction";
 
 export default function EditBoardPageTemplate() {
 	const { id } = useParams();

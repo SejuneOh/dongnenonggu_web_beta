@@ -2,7 +2,7 @@ import { useEffect, useTransition } from "react";
 import Loading from "../components/Molecules/Loading";
 import PostPageTemplate from "../components/Templates/PostPageTemplate";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { funcSetTotalBoard } from "../store/board.action";
+import { funcSetTotalBoard } from "../store/boardAction";
 import { DefaultTemplate } from "../styles/defaultMainTemplate";
 
 export default function PostPage() {

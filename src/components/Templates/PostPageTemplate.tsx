@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, useEffect, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { funcSetTotalBoard } from "../../store/board.action";
+import { funcSetTotalBoard } from "../../store/boardAction";
 import { PostPageTemplateStyle } from "../../styles/postPageTemplateStyle";
 import PostSearchBar from "../Atoms/PostSearchBar";
 import PostUpdateBtn from "../Atoms/PostUpdateBtn";

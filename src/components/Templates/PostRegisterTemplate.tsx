@@ -10,7 +10,7 @@ import stardium from "../../assets/stadium.svg";
 import backetball from "../../assets/basketballIcon.svg";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { funcSetCurrentLocate } from "../../store/stepAction";
-import boardSlice from "../../store/board.slice";
+import boardSlice from "../../store/boardSlice";
 
 const PostRegisterTemplateStyle = styled.div`
 	max-width: 630px;

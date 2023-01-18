@@ -2,8 +2,8 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { funcCreateBoard } from "../../api/boardApi";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { updateBoarderList } from "../../store/board.action";
-import boardSlice from "../../store/board.slice";
+import { updateBoarderList } from "../../store/boardAction";
+import boardSlice from "../../store/boardSlice";
 import { StepFooterStyle } from "../../styles/stepFooterStyle";
 
 export default function StepFooter() {
