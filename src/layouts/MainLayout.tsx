@@ -8,9 +8,6 @@ import { LayoutStyle } from "./Layout";
 export default function MainLayout() {
 	const isLogin = useLogin();
 	const { pathname } = useLocation();
-	useEffect(() => {
-		console.log(pathname);
-	}, [pathname]);
 
 	return (
 		<LayoutStyle>

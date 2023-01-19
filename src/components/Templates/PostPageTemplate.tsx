@@ -1,7 +1,6 @@
-import React, { HTMLAttributes, useEffect, useTransition } from "react";
+import React, { HTMLAttributes, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { funcSetTotalBoard } from "../../store/boardAction";
+import useFetchBoardData from "../../hooks/useFetchBoard";
 import { PostPageTemplateStyle } from "../../styles/postPageTemplateStyle";
 import PostSearchBar from "../Atoms/PostSearchBar";
 import PostUpdateBtn from "../Atoms/PostUpdateBtn";
@@ -13,40 +12,43 @@ import PostCard from "../Organisms/PostCard";
 const PostPageTemplate: React.FC = ({
 	...props
 }: HTMLAttributes<HTMLDivElement>) => {
-	const boards = useAppSelector(state => state.board.boardList);
-	const totalPage = useAppSelector(state => state.board.totalPages);
-	const currentPage = useAppSelector(state => state.board.currentPage);
 	const navigator = useNavigate();
-	const addItemBtnClickHandle = (e: React.MouseEvent<HTMLButtonElement>) => {};
+
+	const [pending, value, page, totalPage, nextPageHandle, updateHandle] =
+		useFetchBoardData();
 
 	return (
 		<PostPageTemplateStyle {...props}>
 			<PostPageTitle />
 			<div className="post_option_container">
 				<div className="update_search_wrapper">
-					<PostUpdateBtn />
+					<PostUpdateBtn onClick={updateHandle} />
 					<PostSearchBar />
 				</div>
 				<PostUploadBtn onClick={e => navigator("/become-host/type")} />
 			</div>
 			<section className="post_section">
-				{boards.length ? (
-					boards.map((el, idx) => {
-						return <PostCard key={idx} board={el} />;
-					})
+				{pending ? (
+					<Loading isLoading={pending} />
+				) : value.length > 0 ? (
+					<>
+						{value.map((item, idx) => {
+							return <PostCard key={idx} board={item} />;
+						})}
+						<div className="post_add_item_container">
+							{page < totalPage && (
+								<button className="post_add_item_btn" onClick={nextPageHandle}>
+									더보기
+								</button>
+							)}
+						</div>
+					</>
 				) : (
 					<div className="post_noBaord">
 						<p>등록된 게시글이 없습니다. </p>
 					</div>
 				)}
 			</section>
-			<div className="post_add_item_container">
-				{currentPage < totalPage && (
-					<button className="post_add_item_btn" onClick={addItemBtnClickHandle}>
-						더보기
-					</button>
-				)}
-			</div>
 		</PostPageTemplateStyle>
 	);
 };
