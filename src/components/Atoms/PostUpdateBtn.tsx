@@ -1,17 +1,12 @@
+import { HTMLAttributes } from "react";
 import refreshIcon from "../../assets/refresh.svg";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { updateBoarderList } from "../../store/boardAction";
 import { PostUpdateBtnStyle } from "../../styles/PostUpdateBtnStyle";
 
-export default function PostUpdateBtn() {
-	const dispatch = useAppDispatch();
-
+export default function PostUpdateBtn<
+	T extends HTMLAttributes<HTMLButtonElement>
+>({ ...props }) {
 	return (
-		<PostUpdateBtnStyle
-			onClick={e => {
-				dispatch(updateBoarderList());
-			}}
-		>
+		<PostUpdateBtnStyle {...(props as T)}>
 			<img src={refreshIcon} alt="refreshIcon" />
 			업데이트
 		</PostUpdateBtnStyle>
