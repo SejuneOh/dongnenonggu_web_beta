@@ -37,8 +37,6 @@ export default function PostRegisterTemplate({
 
 	const onChageMenu = useCallback(
 		(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-			console.log(e.currentTarget.id);
-
 			const result = e.currentTarget.id === "outdoor" ? true : false;
 
 			dispatch(boardSlice.actions.setIsOutdoor(result));
